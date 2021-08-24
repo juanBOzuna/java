@@ -1,15 +1,12 @@
 package ejercicio_1;
 import java.awt.event.*;
-import java.lang.reflect.Method;
-import java.util.List;
-
 import javax.swing.*;
 import methods.*;
 
 public class AreaTriangulo {
 	public static void main(String arg[]) {
 
-		Ventana ventana = new Ventana();
+		Ventana1 ventana = new Ventana1();
 		final JLabel vacio = new JLabel();
 		final JLabel altura = new JLabel();
 		final JTextField campoAltura = new JTextField();
@@ -48,7 +45,7 @@ public class AreaTriangulo {
 		});
 	}
 
-	static void calcular(JTextField campoBase ,JTextField campoAltura,JLabel resultado,JLabel mm, JLabel cm, JLabel m, Ventana ventana ){
+	static void calcular(JTextField campoBase ,JTextField campoAltura,JLabel resultado,JLabel mm, JLabel cm, JLabel m, Ventana1 ventana ){
 		double altura = Double.parseDouble(campoAltura.getText().replace(",", ".")  );
 		double base= Double.parseDouble(campoBase.getText().replace(",", ".")  );
 		double result =  (altura*base)/2;

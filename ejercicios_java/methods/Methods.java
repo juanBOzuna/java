@@ -1,8 +1,4 @@
 package methods;
-
-import java.util.Iterator;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +27,11 @@ public class Methods {
 	}
 
     public	static void mostraBoton(JFrame ventana, JButton button  ){
+		button.setText("calcular");
+		ventana.add(button);
+	}
+
+	public	static void mostraBotonRadius(JFrame ventana, JButton button  ){
 		button.setText("calcular");
 		ventana.add(button);
 	}
