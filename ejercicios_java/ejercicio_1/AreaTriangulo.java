@@ -1,12 +1,14 @@
 package ejercicio_1;
 import java.awt.event.*;
 import javax.swing.*;
-import methods.*;
+
+import utils.*;
 
 public class AreaTriangulo {
 	public static void main(String arg[]) {
+		Functions f = new Functions();
+		Window ventana = new Window();
 
-		Ventana1 ventana = new Ventana1();
 		final JLabel vacio = new JLabel();
 		final JLabel altura = new JLabel();
 		final JTextField campoAltura = new JTextField();
@@ -29,15 +31,13 @@ public class AreaTriangulo {
 		Methods.etiquetar(resultadoCm, ventana, "");
 		Methods.etiquetar(resultadoMtrs, ventana, "");
 
-		ventana.pack();
-		ventana.setLocationRelativeTo(null);
-		ventana.setVisible(true);
+		f.parametersForWindow(ventana);
 
 		calcular.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent evento) {
 				try {
-					calcular(campoAltura,campoBase,resultado,resultadoCm,resultadoMm,resultadoMtrs, ventana );
+					f.calcular(campoAltura,campoBase,resultado,resultadoCm,resultadoMm,resultadoMtrs, ventana );
 				} catch (Exception e) {
 					resultado.setText("Error: "+e);
 				}
@@ -45,17 +45,5 @@ public class AreaTriangulo {
 		});
 	}
 
-	static void calcular(JTextField campoBase ,JTextField campoAltura,JLabel resultado,JLabel mm, JLabel cm, JLabel m, Ventana1 ventana ){
-		double altura = Double.parseDouble(campoAltura.getText().replace(",", ".")  );
-		double base= Double.parseDouble(campoBase.getText().replace(",", ".")  );
-		double result =  (altura*base)/2;
-		double mtr=result * 0.001;
-		double cms=result * 0.1;
-
-		Methods.etiquetar(resultado, ventana, "Area del triangulo: ");
-		Methods.etiquetar(mm, ventana, "milimetros: "+ result );
-		Methods.etiquetar(cm, ventana, "centimetros: "+ cms );
-		Methods.etiquetar(m, ventana, "metros: "+ mtr );
-		
-	}
+	
 }
