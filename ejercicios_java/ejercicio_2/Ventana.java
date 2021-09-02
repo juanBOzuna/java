@@ -1,18 +1,9 @@
-package ejercicio_1;
-
-import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-
+package ejercicio_2;
+import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Ventana extends JFrame{
+public class Ventana extends JFrame {
     public Ventana(){
         setLayout(null);
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -32,11 +23,11 @@ public class Ventana extends JFrame{
         panePrincipal.add(titleHeader);
         
         JFormattedTextField formALtura = new JFormattedTextField(new Integer(0));
-        JpanelTexFormAltura texFormAltura = new JpanelTexFormAltura(width,height,formALtura);
+        JpanelTexFormWidth texFormAltura = new JpanelTexFormWidth(width,height,formALtura);
         panePrincipal.add(texFormAltura);
        
         JFormattedTextField formBase = new JFormattedTextField (new Integer(0));
-        JpanelTextFormBase texFormBase = new JpanelTextFormBase(width,height,formBase);
+        JpanelTextFormLarge texFormBase = new JpanelTextFormLarge(width,height,formBase);
         panePrincipal.add(texFormBase);
       
         JpanelButton button = new JpanelButton((int)(width*0.3),height,formALtura,formBase);
@@ -44,6 +35,7 @@ public class Ventana extends JFrame{
 
     }
 }
+
 
 
 /**
@@ -57,7 +49,7 @@ class JpanelHeaderTitle extends JPanel {
         // this.setSize(width, height);
 
          JLabel text = new JLabel();
-         text.setText("Area de un triangulo");
+         text.setText("Area de un Rectangulo");
          text.setHorizontalAlignment(SwingConstants.CENTER );
          text.setVerticalAlignment(SwingConstants.BOTTOM);
          text.setFont(new Font("britannic bold",0,31) );
@@ -66,7 +58,7 @@ class JpanelHeaderTitle extends JPanel {
          JLabel subText = new JLabel();
          subText.setHorizontalAlignment(SwingConstants.CENTER );
          subText.setVerticalAlignment(SwingConstants.TOP);
-         subText.setText("Resultados en mm cm y m");
+         subText.setText("Resultados en m cm y mm cuadrados");
          subText.setFont(new Font("abadi",0,10) );
          add(subText);
     }
@@ -75,14 +67,14 @@ class JpanelHeaderTitle extends JPanel {
 /**
  * JpanelTexFormAltura
  */ 
-class JpanelTexFormAltura extends JPanel {
-    public JpanelTexFormAltura(int width, int height,JTextField form ) {
+class JpanelTexFormWidth extends JPanel {
+    public JpanelTexFormWidth(int width, int height,JTextField form ) {
         this.setBounds(20, (int)(height*0.10)-15 , (int)(width*0.135-20 ),(int)(height*0.13));
         this.setBackground(Color.white);
         this.setLayout(null );
         
         JLabel text = new JLabel();
-        text.setText("Altura en mm");
+        text.setText("Ancho en metros");
         text.setHorizontalAlignment(SwingConstants.CENTER );
         
         text.setFont(new Font("abadi",2,15) );
@@ -101,15 +93,18 @@ class JpanelTexFormAltura extends JPanel {
     }
 }
 
-class JpanelTextFormBase extends JPanel {
-    public JpanelTextFormBase(int width, int height,JTextField form ) {
+/**
+ * JpanelTextFormBase
+ */ 
+class JpanelTextFormLarge extends JPanel {
+    public JpanelTextFormLarge(int width, int height,JTextField form ) {
         this.setBounds((int)(width*0.135-20 )+40, (int)(height*0.10)-15 , (int)(width*0.135-20 ),(int)(height*0.13));
         this.setBackground(Color.white);
         this.setLayout(null );
 
         
         JLabel text = new JLabel();
-        text.setText("Base en mm");
+        text.setText("Largo en metros");
         text.setHorizontalAlignment(SwingConstants.CENTER );
         text.setFont(new Font("abadi",2,15) );
 
@@ -127,7 +122,9 @@ class JpanelTextFormBase extends JPanel {
 }
 
 
-
+/**
+ * JpanelButton
+ */ 
 class JpanelButton extends JPanel {
     public JpanelButton(int height,int width,JTextField fAltura,JTextField fBase  ){
         this.setBounds(0,180 , width ,150 );
@@ -148,16 +145,11 @@ class JpanelButton extends JPanel {
                 try {
                     double altura = Double.parseDouble(fAltura.getText().replace(",", ".") );
                     double base= Double.parseDouble(fBase.getText().replace(",", ".")  );
-                    double result =  (altura*base)/2;
-                    double mtr=result * 0.001;
-                    double cms=result * 0.1;
-                    String mensage = "Metros: "+Double.toString(mtr)+"  \nCentimetros:  "+Double.toString(cms)+"\nMilimetros: " +Double.toString(result);
-                    Ventana ventana = new Ventana();
-                    if (fAltura.getText()!=null &&fBase.getText()!=null ) {
-                        JOptionPane.showMessageDialog(ventana ,mensage , "Area en las siguientes medidas", 1);
-                    }else{
-                        JOptionPane.showMessageDialog(ventana ,mensage , "Area en las siguientes medidas", 1); 
-                    }
+                    double result =  altura*base;
+                    double mm=result * 1000;
+                    double cms=result * 100;
+                    String mensage = "Metros: "+Double.toString(result)+"  \nCentimetros:  "+Double.toString(cms)+"\nMilimetros: " +Double.toString(mm);
+                        JOptionPane.showMessageDialog(null ,mensage , "Area en las siguientes medidas", 1);
                    
                 } catch (Exception e) {
                     // resultado.setText("Error: "+e);
