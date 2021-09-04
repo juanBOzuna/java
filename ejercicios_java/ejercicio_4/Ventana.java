@@ -2,6 +2,7 @@ package ejercicio_4;
 
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.plaf.DimensionUIResource;
 
 import methods.DigitOnlyFormKeyListener;
 import methods.HintTextListener;
@@ -16,14 +17,18 @@ public class Ventana extends JFrame {
 
     public Ventana() {
 
-        setLayout(null);
+        // setLayout(null);
         setBackground(Color.white);
-        setSize((int) (width * 0.5) + 15, (int) (height * 0.9));
+        setSize((int) (width * 0.5) , (int) (height * 0.9));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panePrincipal = new JPanel();
+        JScrollPane panelScroll = new JScrollPane();
+        panelScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        panelScroll.setBounds(10, 10,(int) (width * 0.5), (int) (height * 0.9));
 
-        panePrincipal.setSize((int) (width * 0.5), (int) (height * 0.9));
+        // panePrincipal.setSize((int) (width * 0.5), (int) (height * 0.9));
+        panePrincipal.setPreferredSize(new DimensionUIResource((int) (width * 0.48), (int) (height * 0.85)));
         panePrincipal.setBackground(Color.white);
         panePrincipal.setLayout(null);
 
@@ -95,7 +100,9 @@ public class Ventana extends JFrame {
                 overtimeNightHours, overtimeDominicalDay, overtimeDominicalNight, nameEmployee);
         panePrincipal.add(button);
 
-        add(panePrincipal);
+        panelScroll.setViewportView(panePrincipal);
+
+        add(panelScroll);
     }
 
     void addDividers(JPanel panel, int width, int height) {

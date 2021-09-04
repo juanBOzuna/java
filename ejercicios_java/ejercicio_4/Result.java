@@ -1,5 +1,7 @@
 package ejercicio_4;
 import javax.swing.*;
+import javax.swing.plaf.DimensionUIResource;
+
 import java.awt.*;
 
 public class Result extends JFrame {
@@ -10,12 +12,17 @@ public class Result extends JFrame {
             double hr4, double val4, double hr5, double val5, double hr6, double val6, double hr7, double val7,
             double val8, double val9, double aporEps, double aporPension, double cuotaPrestamo, double val10,
             double val11, double val12, String name) {
-        setLayout(null);
+        // setLayout(null);
         setBackground(Color.white);
         setSize((int) (width * 0.5) + 15, (int) (height * 0.9));
         JPanel panelResult = new JPanel();
 
-        panelResult.setSize((int) (width * 0.5), (int) (height * 0.9));
+        JScrollPane panelScroll = new JScrollPane();
+        panelScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        panelScroll.setBounds(10, 10,(int) (width * 0.5), (int) (height * 0.9));
+
+        // panelResult.setSize((int) (width * 0.5), (int) (height * 0.9));
+        panelResult.setPreferredSize(new DimensionUIResource((int) (width * 0.48), (int) (height * 0.85)));
         panelResult.setBackground(Color.white);
         panelResult.setLayout(null);
         addDividersFromResult(panelResult, width, height);
@@ -43,7 +50,9 @@ public class Result extends JFrame {
         JPanelImageDductions ImageDeductions = new JPanelImageDductions(width, height);
         panelResult.add(ImageDeductions);
 
-        add(panelResult);
+        panelScroll.setViewportView(panelResult);
+
+        add(panelScroll);
 
     }
 
