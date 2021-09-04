@@ -29,40 +29,40 @@ public class FunctionsForNomina {
       double val1, double hr2, double val2, double hr3, double val3, double hr4, double val4, double hr5, double val5,
       double hr6, double val6, double hr7, double val7, double val8,double val9, double aporEps, double aporPension,
       double cuotaPrestamo,double val10,double val11,double val12,String name ) {
-    frameResult.setVisible(true);
-    frameResult.setLayout(null);
-    frameResult.setBackground(Color.white);
-    frameResult.setSize((int) (width * 0.5) + 15, (int) (height * 0.9));
-    frameResult.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frameResult.setVisible(true);
+      frameResult.setLayout(null);
+      frameResult.setBackground(Color.white);
+      frameResult.setSize((int) (width * 0.5) + 15, (int) (height * 0.9));
+      // frameResult.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    paneResult.setSize((int) (width * 0.5), (int) (height * 0.9));
-    paneResult.setBackground(Color.white);
-    paneResult.setLayout(null);
-    FunctionsForNomina.addDividersFromResult(paneResult, width, height);
+      paneResult.setSize((int) (width * 0.5), (int) (height * 0.9));
+      paneResult.setBackground(Color.white);
+      paneResult.setLayout(null);
+      FunctionsForNomina.addDividersFromResult(paneResult, width, height);
 
-    JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width, height, "Nomina de empleados");
-    paneResult.add(titleHeader);
+      JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width, height, "Nomina de empleados");
+      paneResult.add(titleHeader);
 
-    JPanelTitleSurchargues titleSurchargues = new JPanelTitleSurchargues(width, height);
-    paneResult.add(titleSurchargues);
+      JPanelTitleSurchargues titleSurchargues = new JPanelTitleSurchargues(width, height);
+      paneResult.add(titleSurchargues);
 
-    JpanelContentSurchargues contentSurchargues = new JpanelContentSurchargues(width, height, hr1, val1, hr2, val2, hr3,
-        val3, hr4, val4, hr5, val5, hr6, val6, hr7, val7, val8,val9);
-    paneResult.add(contentSurchargues);
+      JpanelContentSurchargues contentSurchargues = new JpanelContentSurchargues(width, height, hr1, val1, hr2, val2, hr3,
+          val3, hr4, val4, hr5, val5, hr6, val6, hr7, val7, val8,val9);
+      paneResult.add(contentSurchargues);
 
-    JPanelTitleDeductions titleDeductions = new JPanelTitleDeductions(width, height);
-    paneResult.add(titleDeductions);
+      JPanelTitleDeductions titleDeductions = new JPanelTitleDeductions(width, height);
+      paneResult.add(titleDeductions);
 
-    JPanelContentDeductions contentDeductions = new JPanelContentDeductions(width, height, aporEps, aporPension,
-        cuotaPrestamo);
-    paneResult.add(contentDeductions);
+      JPanelContentDeductions contentDeductions = new JPanelContentDeductions(width, height, aporEps, aporPension,
+          cuotaPrestamo);
+      paneResult.add(contentDeductions);
 
-    JPanelImageDductions ImageDeductions = new JPanelImageDductions(width, height);
-    paneResult.add(ImageDeductions);
+      JPanelImageDductions ImageDeductions = new JPanelImageDductions(width, height);
+      paneResult.add(ImageDeductions);
 
-    JPanelFooterResult footer = new JPanelFooterResult(width, height, name, val10, val11, val12);
-    paneResult.add(footer);
+      JPanelFooterResult footer = new JPanelFooterResult(width, height, name, val10, val11, val12);
+      paneResult.add(footer);
 
-    frameResult.add(paneResult);
+      frameResult.add(paneResult);
   }
 }
