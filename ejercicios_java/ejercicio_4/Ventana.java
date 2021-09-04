@@ -2,6 +2,11 @@ package ejercicio_4;
 
 import java.awt.event.*;
 import javax.swing.*;
+
+import methods.DigitOnlyFormKeyListener;
+import methods.HintTextListener;
+import methods.NotDigitFormKeyListener;
+
 import java.awt.*;
 
 public class Ventana extends JFrame {
@@ -193,6 +198,7 @@ class JpanelCheckJornada extends JPanel {
         halfDay.setText("Media");
         halfDay.setBackground(Color.white);
         checks.add(halfDay);
+        
         add(checks);
 
         FullTime.addActionListener(new ActionListener() {
@@ -252,55 +258,24 @@ class JPanelCheckLoan extends JPanel {
         this.setBackground(Color.white);
         this.setLayout(new GridLayout(2, 1));
 
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, title);
+
         JPanel checks = new JPanel();
         checks.setBounds(50, (int) (height * 0.12), (int) (width * 0.5 / 2) - 100, (int) (height * 0.5));
         checks.setBackground(Color.white);
         checks.setLayout(new GridLayout(1, 2));
-
         check.setText(" Tiene un prestamo");
         check.setBackground(Color.white);
         checks.add(check);
-
         add(checks);
 
         form.setText(title);
         form.setSize(100, 100);
         form.setEditable(false);
         form.setToolTipText(title);
-
-        form.addFocusListener(new FocusAdapter() {
-
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (form.getText().equals(title)) {
-                    form.setText("");
-                } else {
-                    form.setText(form.getText());
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (form.getText().equals(title) || form.getText().length() == 0) {
-                    form.setText(title);
-                } else {
-                    form.setText(form.getText());
-                }
-            }
-        });
-
-        form.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                char caracter = evt.getKeyChar();
-
-                // Verificar si la tecla pulsada no es un digito
-                if (((caracter < '0') || (caracter > '9')) && (caracter != '.')
-                        && (caracter != '\b' /* corresponde a BACK_SPACE */)) {
-                    evt.consume(); // ignorar el evento de teclado
-                }
-            }
-        });
-
+        form.addFocusListener(focusAdapterForm2);
+        form.addKeyListener(keyListenersDigitOnly);
         add(form);
 
         check.addActionListener(new ActionListener() {
@@ -347,78 +322,21 @@ class Tfmfld extends JPanel {
         this.setBounds(boundX, boundY, width, height);
         this.setBackground(Color.white);
         this.setLayout(new GridLayout(1, 1));
+
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, titleGeneral);
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        NotDigitFormKeyListener keyListenersNotDigit = new NotDigitFormKeyListener();
+
         form.setText(titleGeneral);
         form.setToolTipText(titleGeneral);
+        form.addFocusListener(focusAdapterForm2);
 
         if (isnumber) {
-
-            form.addFocusListener(new FocusAdapter() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    if (form.getText().equals(titleGeneral)) {
-                        form.setText("");
-                    } else {
-                        form.setText(form.getText());
-                    }
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    if (form.getText().equals(titleGeneral) || form.getText().length() == 0) {
-                        form.setText(titleGeneral);
-                    } else {
-                        form.setText(form.getText());
-                    }
-                }
-            });
-
-            form.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyTyped(java.awt.event.KeyEvent evt) {
-                    char caracter = evt.getKeyChar();
-
-                    // Verificar si la tecla pulsada no es un digito
-                    if (((caracter < '0') || (caracter > '9')) && (caracter != '.')
-                            && (caracter != '\b' /* corresponde a BACK_SPACE */)) {
-                        evt.consume(); // ignorar el evento de teclado
-                    }
-                }
-            });
-            add(form);
+            form.addKeyListener(keyListenersDigitOnly);
         } else {
-
-            form.addKeyListener(new java.awt.event.KeyAdapter() {
-                public void keyTyped(java.awt.event.KeyEvent evt) {
-                    char caracter = evt.getKeyChar();
-
-                    // Verificar si la tecla pulsada no es un digito
-                    if (Character.isDigit(caracter)) {
-                        evt.consume(); // ignorar el evento de teclado
-                    }
-                }
-            });
-
-            form.addFocusListener(new FocusAdapter() {
-                @Override
-                public void focusGained(FocusEvent e) {
-                    if (form.getText().equals(titleGeneral)) {
-                        form.setText("");
-                    } else {
-                        form.setText(form.getText());
-                    }
-                }
-
-                @Override
-                public void focusLost(FocusEvent e) {
-                    if (form.getText().equals(titleGeneral) || form.getText().length() == 0) {
-                        form.setText(titleGeneral);
-                    } else {
-                        form.setText(form.getText());
-                    }
-                }
-            });
-            add(form);
+            form.addKeyListener(keyListenersNotDigit);
         }
-
+        add(form);
     }
 
     double getFormValueDouble() {
