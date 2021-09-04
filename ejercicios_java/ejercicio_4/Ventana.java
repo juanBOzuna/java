@@ -2,118 +2,95 @@ package ejercicio_4;
 
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.plaf.ColorUIResource;
-
 import java.awt.*;
 
 public class Ventana extends JFrame {
-    static boolean showVentana = true;
-    static boolean WINDOW_RESULT = true;
+
     static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
-    static ColorUIResource colorAttribute = new ColorUIResource(0, 124, 124);
-    static boolean validation = true;
-    // static Result result = new Result();
-    static String value = " ";
 
-    public Ventana(int operationClose, boolean pageResult) {
+    public Ventana() {
+
         setLayout(null);
         setBackground(Color.white);
         setSize((int) (width * 0.5) + 15, (int) (height * 0.9));
-        setDefaultCloseOperation(operationClose);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panePrincipal = new JPanel();
-        JPanel panelResult = new JPanel();
 
-        if (!pageResult) {
-            panePrincipal.setSize((int) (width * 0.5), (int) (height * 0.9));
-            panePrincipal.setBackground(Color.white);
-            panePrincipal.setLayout(null);
-            JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width, height, "Nomina de empleados");
-            panePrincipal.add(titleHeader);
+        panePrincipal.setSize((int) (width * 0.5), (int) (height * 0.9));
+        panePrincipal.setBackground(Color.white);
+        panePrincipal.setLayout(null);
 
-            addDividers(panePrincipal, width, height);
+        JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width, height, "Nomina de empleados");
+        panePrincipal.add(titleHeader);
 
-            JpanelCheckJornada checkJornada = new JpanelCheckJornada(width, height);
-            panePrincipal.add(checkJornada);
+        addDividers(panePrincipal, width, height);
 
-            JPanelCheckLoan checkLoan = new JPanelCheckLoan(width, height);
-            panePrincipal.add(checkLoan);
+        JpanelCheckJornada checkJornada = new JpanelCheckJornada(width, height);
+        panePrincipal.add(checkJornada);
 
-            int WIDTH_DEFAULT = (int) (width * 0.5 / 2) - 100;
-            int HEIGHT_DEFAULT = (int) (height * 0.05);
-            int BOUND_X_DEFAULT = (int) ((width * 0.5 / 2) + 50);
+        JPanelCheckLoan checkLoan = new JPanelCheckLoan(width, height);
+        panePrincipal.add(checkLoan);
 
-            Tfmfld salarioMinimo = new Tfmfld(50, (int) (height * 0.22) + 30, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " ** Salario minimo Actual", true);
-            panePrincipal.add(salarioMinimo);
+        int WIDTH_DEFAULT = (int) (width * 0.5 / 2) - 100;
+        int HEIGHT_DEFAULT = (int) (height * 0.05);
+        int BOUND_X_DEFAULT = (int) ((width * 0.5 / 2) + 50);
 
-            Tfmfld salaryEmployee = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.22) + 30, WIDTH_DEFAULT,
-                    HEIGHT_DEFAULT, " ** Salario del empleado", true);
-            panePrincipal.add(salaryEmployee);
+        Tfmfld salarioMinimo = new Tfmfld(50, (int) (height * 0.22) + 30, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " ** Salario minimo Actual", true);
+        panePrincipal.add(salarioMinimo);
 
-            Tfmfld workedDays = new Tfmfld(50, (int) (height * 0.27) + 50, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " ** Dias trabajados", true);
-            panePrincipal.add(workedDays);
+        Tfmfld salaryEmployee = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.22) + 30, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " ** Salario del empleado", true);
+        panePrincipal.add(salaryEmployee);
 
-            Tfmfld hoursNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.27) + 50, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " Horas nocturas", true);
-            panePrincipal.add(hoursNight);
+        Tfmfld workedDays = new Tfmfld(50, (int) (height * 0.27) + 50, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " ** Dias trabajados", true);
+        panePrincipal.add(workedDays);
 
-            Tfmfld hoursDominicalsDay = new Tfmfld(50, (int) (height * 0.32) + 70, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " Horas dominicales diurnas", true);
-            panePrincipal.add(hoursDominicalsDay);
+        Tfmfld hoursNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.27) + 50, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " Horas nocturas", true);
+        panePrincipal.add(hoursNight);
 
-            Tfmfld hoursDominicalsNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.32) + 70, WIDTH_DEFAULT,
-                    HEIGHT_DEFAULT, " Horas Dominicales nocturnas", true);
-            panePrincipal.add(hoursDominicalsNight);
+        Tfmfld hoursDominicalsDay = new Tfmfld(50, (int) (height * 0.32) + 70, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " Horas dominicales diurnas", true);
+        panePrincipal.add(hoursDominicalsDay);
 
-            Tfmfld overtimeDayHours = new Tfmfld(50, (int) (height * 0.37) + 90, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " Horas extras diurnas", true);
-            panePrincipal.add(overtimeDayHours);
+        Tfmfld hoursDominicalsNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.32) + 70, WIDTH_DEFAULT,
+                HEIGHT_DEFAULT, " Horas Dominicales nocturnas", true);
+        panePrincipal.add(hoursDominicalsNight);
 
-            Tfmfld overtimeNightHours = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.37) + 90, WIDTH_DEFAULT,
-                    HEIGHT_DEFAULT, " Horas extras nocturnas", true);
-            panePrincipal.add(overtimeNightHours);
+        Tfmfld overtimeDayHours = new Tfmfld(50, (int) (height * 0.37) + 90, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " Horas extras diurnas", true);
+        panePrincipal.add(overtimeDayHours);
 
-            Tfmfld overtimeDominicalDay = new Tfmfld(50, (int) (height * 0.42) + 110, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " Horas extras dominicales diurnas", true);
-            panePrincipal.add(overtimeDominicalDay);
+        Tfmfld overtimeNightHours = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.37) + 90, WIDTH_DEFAULT,
+                HEIGHT_DEFAULT, " Horas extras nocturnas", true);
+        panePrincipal.add(overtimeNightHours);
 
-            Tfmfld overtimeDominicalNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.42) + 110, WIDTH_DEFAULT,
-                    HEIGHT_DEFAULT, " Horas extras dominicales nocturnas", true);
-            panePrincipal.add(overtimeDominicalNight);
+        Tfmfld overtimeDominicalDay = new Tfmfld(50, (int) (height * 0.42) + 110, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " Horas extras dominicales diurnas", true);
+        panePrincipal.add(overtimeDominicalDay);
 
-            Tfmfld bonus = new Tfmfld(50, (int) (height * 0.47) + 130, WIDTH_DEFAULT, HEIGHT_DEFAULT,
-                    " Bonificacion para el cliente", true);
-            panePrincipal.add(bonus);
+        Tfmfld overtimeDominicalNight = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.42) + 110, WIDTH_DEFAULT,
+                HEIGHT_DEFAULT, " Horas extras dominicales nocturnas", true);
+        panePrincipal.add(overtimeDominicalNight);
 
-            Tfmfld nameEmployee = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.47) + 130, WIDTH_DEFAULT,
-                    HEIGHT_DEFAULT, " ** Nombre del empleado", false);
-            panePrincipal.add(nameEmployee);
+        Tfmfld bonus = new Tfmfld(50, (int) (height * 0.47) + 130, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " Bonificacion para el cliente", true);
+        panePrincipal.add(bonus);
 
-            JpanelButton button = new JpanelButton(height, width, checkLoan, checkJornada, bonus, salarioMinimo,
-                    salaryEmployee, workedDays, hoursNight, hoursDominicalsDay, hoursDominicalsNight, overtimeDayHours,
-                    overtimeNightHours, overtimeDominicalDay, overtimeDominicalNight, panelResult, nameEmployee);
-            panePrincipal.add(button);
+        Tfmfld nameEmployee = new Tfmfld(BOUND_X_DEFAULT, (int) (height * 0.47) + 130, WIDTH_DEFAULT, HEIGHT_DEFAULT,
+                " ** Nombre del empleado", false);
+        panePrincipal.add(nameEmployee);
 
-            add(panePrincipal);
-        } else {
-            if (validation) {
-                // panelResult.setSize((int) (width * 0.5), (int) (height * 0.9));
-                // panelResult.setBackground(Color.white);
-                // panelResult.setLayout(null);
-                // JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width, height,
-                // "Resultados");
+        JpanelButton button = new JpanelButton(height, width, checkLoan, checkJornada, bonus, salarioMinimo,
+                salaryEmployee, workedDays, hoursNight, hoursDominicalsDay, hoursDominicalsNight, overtimeDayHours,
+                overtimeNightHours, overtimeDominicalDay, overtimeDominicalNight, nameEmployee);
+        panePrincipal.add(button);
 
-                // panelResult.add(titleHeader);
-
-                // // addDividersFromResult(panelResult, width, height);
-                // addResults(panelResult, width, height);
-                // add(panelResult);
-
-            }
-        }
+        add(panePrincipal);
     }
 
     void addDividers(JPanel panel, int width, int height) {
@@ -175,7 +152,6 @@ class JpanelHeaderTitle extends JPanel {
         this.setBounds(155, 15, (int) (width * 0.3 - 60), (int) (height * 0.09));
         this.setBackground(Color.white);
         this.setLayout(new GridLayout(2, 1));
-        // this.setSize(width, height);
 
         JLabel text = new JLabel();
         text.setText(title);
@@ -316,10 +292,7 @@ class JPanelCheckLoan extends JPanel {
         form.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 char caracter = evt.getKeyChar();
-                // Verificar si ya existe un punto
-                if (form.getText().contains(".") && (caracter == '.')) {
-                    evt.consume();
-                }
+
                 // Verificar si la tecla pulsada no es un digito
                 if (((caracter < '0') || (caracter > '9')) && (caracter != '.')
                         && (caracter != '\b' /* corresponde a BACK_SPACE */)) {
@@ -335,7 +308,6 @@ class JPanelCheckLoan extends JPanel {
             public void actionPerformed(ActionEvent evento) {
                 try {
                     form.setEditable(isTicket);
-                    // form.setText("0");
                     isTicket = !isTicket;
                 } catch (Exception e) {
                 }
@@ -358,9 +330,8 @@ class JPanelCheckLoan extends JPanel {
     void dispose() {
         check.setSelected(false);
         form.setText(title);
-
-        form.setEditable(isTicket);
-        isTicket=true;
+        form.setEditable(false);
+        isTicket = true;
     }
 }
 
@@ -369,7 +340,6 @@ class JPanelCheckLoan extends JPanel {
  */
 class Tfmfld extends JPanel {
     JTextField form = new JTextField();
-    JTextField formTxt = new JTextField();
     String titleGeneral = "";
 
     public Tfmfld(int boundX, int boundY, int width, int height, String title, boolean isnumber) {
@@ -377,10 +347,11 @@ class Tfmfld extends JPanel {
         this.setBounds(boundX, boundY, width, height);
         this.setBackground(Color.white);
         this.setLayout(new GridLayout(1, 1));
+        form.setText(titleGeneral);
+        form.setToolTipText(titleGeneral);
 
         if (isnumber) {
-            form.setText(titleGeneral);
-            form.setToolTipText(titleGeneral);
+
             form.addFocusListener(new FocusAdapter() {
                 @Override
                 public void focusGained(FocusEvent e) {
@@ -400,13 +371,11 @@ class Tfmfld extends JPanel {
                     }
                 }
             });
+
             form.addKeyListener(new java.awt.event.KeyAdapter() {
                 public void keyTyped(java.awt.event.KeyEvent evt) {
                     char caracter = evt.getKeyChar();
-                    // Verificar si ya existe un punto
-                    if (form.getText().contains(".") && (caracter == '.')) {
-                        evt.consume();
-                    }
+
                     // Verificar si la tecla pulsada no es un digito
                     if (((caracter < '0') || (caracter > '9')) && (caracter != '.')
                             && (caracter != '\b' /* corresponde a BACK_SPACE */)) {
@@ -416,28 +385,38 @@ class Tfmfld extends JPanel {
             });
             add(form);
         } else {
-            formTxt.setText(titleGeneral);
-            formTxt.setToolTipText(titleGeneral);
-            formTxt.addFocusListener(new FocusAdapter() {
+
+            form.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyTyped(java.awt.event.KeyEvent evt) {
+                    char caracter = evt.getKeyChar();
+
+                    // Verificar si la tecla pulsada no es un digito
+                    if (Character.isDigit(caracter)) {
+                        evt.consume(); // ignorar el evento de teclado
+                    }
+                }
+            });
+
+            form.addFocusListener(new FocusAdapter() {
                 @Override
                 public void focusGained(FocusEvent e) {
-                    if (formTxt.getText().equals(titleGeneral)) {
-                        formTxt.setText("");
+                    if (form.getText().equals(titleGeneral)) {
+                        form.setText("");
                     } else {
-                        formTxt.setText(formTxt.getText());
+                        form.setText(form.getText());
                     }
                 }
 
                 @Override
                 public void focusLost(FocusEvent e) {
-                    if (formTxt.getText().equals(titleGeneral) || formTxt.getText().length() == 0) {
-                        formTxt.setText(titleGeneral);
+                    if (form.getText().equals(titleGeneral) || form.getText().length() == 0) {
+                        form.setText(titleGeneral);
                     } else {
-                        formTxt.setText(formTxt.getText());
+                        form.setText(form.getText());
                     }
                 }
             });
-            add(formTxt);
+            add(form);
         }
 
     }
@@ -451,11 +430,7 @@ class Tfmfld extends JPanel {
     }
 
     String GetFormValue() {
-        // if (form.getText() != titleGeneral) {
-        return formTxt.getText();
-        // } else {
-        // return "Sin nombre";
-        // }
+        return form.getText();
     }
 
     boolean validateForm() {
@@ -464,12 +439,10 @@ class Tfmfld extends JPanel {
         } else {
             return true;
         }
-        // return !(form.getText() == titleGeneral);
     }
 
     void cleanForm() {
         form.setText(titleGeneral);
-        // return Double.parseDouble(form.getText());
     }
 }
 
@@ -480,7 +453,7 @@ class JpanelButton extends JPanel {
     public JpanelButton(int height, int width, JPanelCheckLoan checkLoan, JpanelCheckJornada jornada, Tfmfld bonus,
             Tfmfld smlvg, Tfmfld salario, Tfmfld diasTrabajo, Tfmfld horasnoct, Tfmfld horasdominicfestdia,
             Tfmfld horasdominicfestnoct, Tfmfld horextradia, Tfmfld horextranoct, Tfmfld horextradomfesdia,
-            Tfmfld horextradomfesnoct, JPanel panelAdd, Tfmfld nombre) {
+            Tfmfld horextradomfesnoct, Tfmfld nombre) {
 
         this.setBounds(0, (int) (height * 0.73), (int) (width * 0.5), 80);
         this.setBackground(Color.white);
@@ -488,14 +461,15 @@ class JpanelButton extends JPanel {
 
         JButton button = new JButton("CALCULAR");
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBounds((int) (width * 0.25) - 130, 10, 100, 50);
+
+        buttonPanel.setBounds((int) (width * 0.25) - 100 + 130, 10, 100, 50);
         buttonPanel.add(button);
         buttonPanel.setBackground(Color.white);
         add(buttonPanel);
 
         JButton button2 = new JButton("Formatear ");
         JPanel buttonPanel2 = new JPanel();
-        buttonPanel2.setBounds((int) (width * 0.25) - 100 + 130, 10, 100, 50);
+        buttonPanel2.setBounds((int) (width * 0.25) - 130, 10, 100, 50);
         buttonPanel2.add(button2);
         buttonPanel2.setBackground(Color.white);
         add(buttonPanel2);
@@ -513,9 +487,6 @@ class JpanelButton extends JPanel {
             @Override
             public void actionPerformed(ActionEvent evento) {
                 boolean validator = true;
-
-                JFrame frameResult = new JFrame();
-                JPanel paneResult = new JPanel();
 
                 double VALOR_DIA = 0, VALOR_HORA = 0;
                 double saldiastrabjo = 0, salrecarnoct = 0, totalauxtransp = 0, salhordominicfestdia = 0,
@@ -551,7 +522,6 @@ class JpanelButton extends JPanel {
                             if (salario.getFormValueDouble() >= smlvg.getFormValueDouble() / 2) {
                                 VALOR_HORA = VALOR_DIA / 4;
                                 validator = true;
-                                Ventana.validation = false;
                             } else {
                                 validator = false;
                                 JOptionPane.showMessageDialog(null,
@@ -592,16 +562,18 @@ class JpanelButton extends JPanel {
                         // --calculo recargos
 
                         totalsalrecargo = totalauxtransp + salrecarnoct + salhordominicfestdia + salhordominicfestnoct
-                                + salhorextrdia + salhorextrnoct + salhorextradomfesdia + salhorextradomfesnoct;
+                                + salhorextrdia + salhorextrnoct + salhorextradomfesdia + salhorextradomfesnoct
+                                + bonus.getFormValueDouble();
+
                         totalsalneto = saldiastrabjo + totalsalrecargo;
                         aporeps = (totalsalneto * 4) / 100;
                         aporpension = aporeps;
                         totaldeduccion = aporeps + aporpension + checkLoan.getAmountToBePaid();
-                        totalsaldevengado = totalsalneto - totaldeduccion + bonus.getFormValueDouble();
+                        totalsaldevengado = totalsalneto - totaldeduccion;
 
-                        FunctionsForNomina.addContentResult(frameResult, paneResult, width, height,
-                                horasnoct.getFormValueDouble(), salrecarnoct, horasdominicfestdia.getFormValueDouble(),
-                                salhordominicfestdia, horasdominicfestnoct.getFormValueDouble(), salhordominicfestnoct,
+                        Result result = new Result(width, height, horasnoct.getFormValueDouble(), salrecarnoct,
+                                horasdominicfestdia.getFormValueDouble(), salhordominicfestdia,
+                                horasdominicfestnoct.getFormValueDouble(), salhordominicfestnoct,
                                 horextradia.getFormValueDouble(), salhorextrdia, horextranoct.getFormValueDouble(),
                                 salhorextrnoct, horextradomfesdia.getFormValueDouble(), salhorextradomfesdia,
                                 horextradomfesnoct.getFormValueDouble(), salhorextradomfesnoct,
@@ -609,18 +581,12 @@ class JpanelButton extends JPanel {
                                 checkLoan.getAmountToBePaid(), totalsalrecargo, totalsalneto, totalsaldevengado,
                                 nombre.GetFormValue());
 
+                        result.setVisible(true);
+
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Rellene todos los campos");
                 }
-
-                // frameResult
-
-                frameResult.addWindowListener(new WindowAdapter() {
-                    public void windowClosing(WindowEvent evt) {
-
-                    }
-                });
             }
         });
 
@@ -633,280 +599,11 @@ class JpanelButton extends JPanel {
 }
 
 /**
- * JPanelTitleSurchargues
- */
-class JPanelTitleSurchargues extends JPanel {
-
-    public JPanelTitleSurchargues(int width, int height) {
-        this.setBounds(20, (int) (height * 0.12), (int) (width * 0.5 / 2) - 100, (int) (height * 0.05));
-        this.setBackground(Color.white);
-        this.setLayout(new GridLayout(1, 1));
-
-        JLabel text = new JLabel();
-        text.setText("RECARGOS ");
-        text.setHorizontalAlignment(SwingConstants.LEFT);
-        text.setVerticalAlignment(SwingConstants.CENTER);
-        text.setFont(new Font("bahnschrift", 0, 20));
-        add(text);
-    }
-}
-
-/**
- * JPanelTitleDeductions
- */
-class JPanelTitleDeductions extends JPanel {
-
-    public JPanelTitleDeductions(int width, int height) {
-        this.setBounds((int) ((width * 0.5 / 2) + 50), (int) (height * 0.12), (int) (width * 0.5 / 2) - 50,
-                (int) (height * 0.05));
-        this.setBackground(Color.white);
-        this.setLayout(new GridLayout(1, 1));
-
-        JLabel text = new JLabel();
-        text.setText("DEDUCCIONES ");
-        text.setHorizontalAlignment(SwingConstants.CENTER);
-        text.setVerticalAlignment(SwingConstants.CENTER);
-        text.setFont(new Font("bahnschrift", 0, 20));
-        add(text);
-    }
-}
-
-/**
- * JpanelContentSurchargues
- */
-class JpanelContentSurchargues extends JPanel {
-
-    public JpanelContentSurchargues(int width, int height, double hr1, double val1, double hr2, double val2, double hr3,
-            double val3, double hr4, double val4, double hr5, double val5, double hr6, double val6, double hr7,
-            double val7, double val8, double val9) {
-        this.setBounds(20, (int) (height * 0.17), (int) (width * 0.5 / 2) + 10, (int) (height * 0.466));
-        this.setBackground(Color.white);
-        this.setLayout(new GridLayout(16, 1));
-
-        JLabel text = new JLabel();
-        text.setText("Horas nocturnas: " + String.format("%.02f", hr1));
-        text.setHorizontalAlignment(SwingConstants.LEFT);
-        text.setVerticalAlignment(SwingConstants.CENTER);
-        text.setFont(new Font("bahnschrift", 0, 15));
-        add(text);
-
-        JLabel text1 = new JLabel();
-        text1.setText("recargo nocturno: $" + String.format("%.02f", val1));
-        text1.setHorizontalAlignment(SwingConstants.LEFT);
-        text1.setVerticalAlignment(SwingConstants.CENTER);
-        text1.setFont(new Font("bahnschrift", 0, 15));
-
-        add(text1);
-        JLabel text2 = new JLabel();
-        text2.setText("Horas dominic. fest. dia: " + String.format("%.02f", hr2));
-        text2.setHorizontalAlignment(SwingConstants.LEFT);
-        text2.setVerticalAlignment(SwingConstants.CENTER);
-        text2.setFont(new Font("bahnschrift", 0, 15));
-        add(text2);
-
-        JLabel text3 = new JLabel();
-        text3.setText("Recargo por hrs dominic. fest. dia: $" + String.format("%.02f", val2));
-        text3.setHorizontalAlignment(SwingConstants.LEFT);
-        text3.setVerticalAlignment(SwingConstants.CENTER);
-        text3.setFont(new Font("bahnschrift", 0, 15));
-        add(text3);
-
-        JLabel text4 = new JLabel();
-        text4.setText("Horas dominic. fest. noche: " + String.format("%.02f", hr3));
-        text4.setHorizontalAlignment(SwingConstants.LEFT);
-        text4.setVerticalAlignment(SwingConstants.CENTER);
-        text4.setFont(new Font("bahnschrift", 0, 15));
-        add(text4);
-        JLabel text5 = new JLabel();
-        text5.setText("Recargo por hrs dominic. fest. noche: $" + String.format("%.02f", val3));
-        text5.setHorizontalAlignment(SwingConstants.LEFT);
-        text5.setVerticalAlignment(SwingConstants.CENTER);
-        text5.setFont(new Font("bahnschrift", 0, 15));
-        add(text5);
-        JLabel text6 = new JLabel();
-        text6.setText("Horas extras dia: " + String.format("%.02f", hr4));
-        text6.setHorizontalAlignment(SwingConstants.LEFT);
-        text6.setVerticalAlignment(SwingConstants.CENTER);
-        text6.setFont(new Font("bahnschrift", 0, 15));
-        add(text6);
-        JLabel text7 = new JLabel();
-        text7.setText("Recargo por horas extras dia: $" + String.format("%.02f", val4));
-        text7.setHorizontalAlignment(SwingConstants.LEFT);
-        text7.setVerticalAlignment(SwingConstants.CENTER);
-        text7.setFont(new Font("bahnschrift", 0, 15));
-        add(text7);
-        JLabel text8 = new JLabel();
-        text8.setText("Horas extras noche: " + String.format("%.02f", hr5));
-        text8.setHorizontalAlignment(SwingConstants.LEFT);
-        text8.setVerticalAlignment(SwingConstants.CENTER);
-        text8.setFont(new Font("bahnschrift", 0, 15));
-        add(text8);
-        JLabel text9 = new JLabel();
-        text9.setText("Recargo por horas extras noche: $" + String.format("%.02f", val5));
-        text9.setHorizontalAlignment(SwingConstants.LEFT);
-        text9.setVerticalAlignment(SwingConstants.CENTER);
-        text9.setFont(new Font("bahnschrift", 0, 15));
-        add(text9);
-        JLabel text10 = new JLabel();
-        text10.setText("Horas extras festivas dia: " + String.format("%.02f", hr6));
-        text10.setHorizontalAlignment(SwingConstants.LEFT);
-        text10.setVerticalAlignment(SwingConstants.CENTER);
-        text10.setFont(new Font("bahnschrift", 0, 15));
-        add(text10);
-        JLabel text11 = new JLabel();
-        text11.setText("Recargo por hrs extras fest. dia: $" + String.format("%.02f", val6));
-        text11.setHorizontalAlignment(SwingConstants.LEFT);
-        text11.setVerticalAlignment(SwingConstants.CENTER);
-        text11.setFont(new Font("bahnschrift", 0, 15));
-        add(text11);
-        JLabel text12 = new JLabel();
-        text12.setText("Horas extras festivas noche: " + String.format("%.02f", hr7));
-        text12.setHorizontalAlignment(SwingConstants.LEFT);
-        text12.setVerticalAlignment(SwingConstants.CENTER);
-        text12.setFont(new Font("bahnschrift", 0, 15));
-        add(text12);
-        JLabel text13 = new JLabel();
-        text13.setText("Recargo por hrs extras fest. noche: $" + String.format("%.02f", val7));
-        text13.setHorizontalAlignment(SwingConstants.LEFT);
-        text13.setVerticalAlignment(SwingConstants.CENTER);
-        text13.setFont(new Font("bahnschrift", 0, 15));
-        add(text13);
-        JLabel text14 = new JLabel();
-        text14.setText("Bonficaciones: $" + String.format("%.02f", val8));
-        text14.setHorizontalAlignment(SwingConstants.LEFT);
-        text14.setVerticalAlignment(SwingConstants.CENTER);
-        text14.setFont(new Font("bahnschrift", 0, 15));
-        add(text14);
-        JLabel text15 = new JLabel();
-        text15.setText("Aux de transporte: $" + String.format("%.02f", val9));
-        text15.setHorizontalAlignment(SwingConstants.LEFT);
-        text15.setVerticalAlignment(SwingConstants.CENTER);
-        text15.setFont(new Font("bahnschrift", 0, 15));
-        add(text15);
-
-    }
-}
-
-/**
- * JPanelContentDeductions
- */
-class JPanelContentDeductions extends JPanel {
-
-    public JPanelContentDeductions(int width, int height, double aporEps, double aporPension, double cuotaPrestamo) {
-        this.setBounds((int) ((width * 0.5 / 2) + 65), (int) (height * 0.17), (int) (width * 0.5 / 2) - 70,
-                (int) (height * 0.466 / 2));
-        this.setBackground(Color.white);
-        this.setLayout(new GridLayout(4, 1));
-
-        JLabel text = new JLabel();
-        text.setText("Aporte a EPS: $" + String.format("%.02f", aporEps));
-        text.setHorizontalAlignment(SwingConstants.CENTER);
-        text.setVerticalAlignment(SwingConstants.CENTER);
-        text.setFont(new Font("bahnschrift", 0, 15));
-        add(text);
-
-        JLabel text1 = new JLabel();
-        text1.setText("Aporte a Pension: $" + String.format("%.02f", aporPension));
-        text1.setHorizontalAlignment(SwingConstants.CENTER);
-        text1.setVerticalAlignment(SwingConstants.CENTER);
-        text1.setFont(new Font("bahnschrift", 0, 15));
-
-        add(text1);
-        JLabel text2 = new JLabel();
-        text2.setText("Cuota de prestamos: $" + String.format("%.02f", cuotaPrestamo));
-        text2.setHorizontalAlignment(SwingConstants.CENTER);
-        text2.setVerticalAlignment(SwingConstants.CENTER);
-        text2.setFont(new Font("bahnschrift", 0, 15));
-        add(text2);
-
-        JLabel text3 = new JLabel();
-        text3.setText("Total Deducciones: -$" + String.format("%.02f", aporEps + aporPension + cuotaPrestamo));
-        text3.setHorizontalAlignment(SwingConstants.CENTER);
-        text3.setVerticalAlignment(SwingConstants.CENTER);
-        text3.setFont(new Font("bahnschrift", 0, 15));
-        add(text3);
-    }
-}
-
-/**
- * JPanelImageDductions
- */
-class JPanelImageDductions extends JPanel {
-
-    public JPanelImageDductions(int width, int height) {
-
-        this.setBackground(Color.white);
-        setLayout(new GridLayout(1, 1));
-        this.setBounds((int) ((width * 0.5 / 2) + 55), (int) (height * 0.17) + (int) (height * 0.466 / 2),
-                (int) (width * 0.5 / 2) - 70, (int) (height * 0.466 / 2));
-
-        Image img = new ImageIcon("ejercicios_java/ejercicio_4/assets/deduction.png").getImage();
-        ImageIcon img2 = new ImageIcon(
-                img.getScaledInstance((int) (width * 0.5 / 2) - 70, (int) (height * 0.466 / 2), Image.SCALE_SMOOTH));
-
-        JLabel picLabel = new JLabel(img2);
-
-        add(picLabel);
-    }
-
-}
-
-/**
- * JPanelFooter
- */
-class JPanelFooterResult extends JPanel {
-    public JPanelFooterResult(int width, int height, String nombre, Double val1, Double val2, Double val3) {
-        this.setBounds(20, (int) (height * 0.586) + 70, (int) (width * 0.5) - 50, (int) (height * 0.15));
-        this.setBackground(Color.white);
-        this.setLayout(new GridLayout(4, 1));
-        JLabel text1 = new JLabel();
-        text1.setText("Nombre: " + nombre);
-        text1.setHorizontalAlignment(SwingConstants.LEFT);
-        text1.setVerticalAlignment(SwingConstants.CENTER);
-        text1.setFont(new Font("bahnschrift", 0, 15));
-        add(text1);
-
-        JLabel text2 = new JLabel();
-        text2.setText("Total Aux por recargo " + String.format("%.02f", val1));
-        text2.setHorizontalAlignment(SwingConstants.LEFT);
-        text2.setVerticalAlignment(SwingConstants.CENTER);
-        text2.setFont(new Font("bahnschrift", 0, 15));
-        add(text2);
-
-        JLabel text3 = new JLabel();
-        text3.setText("Total salario neto " + String.format("%.02f", val2));
-        text3.setHorizontalAlignment(SwingConstants.LEFT);
-        text3.setVerticalAlignment(SwingConstants.CENTER);
-        text3.setFont(new Font("bahnschrift", 0, 15));
-        add(text3);
-
-        JLabel text4 = new JLabel();
-        text4.setText("Total salario Devengado " + String.format("%.02f", val3));
-        text4.setHorizontalAlignment(SwingConstants.LEFT);
-        text4.setVerticalAlignment(SwingConstants.CENTER);
-        text4.setFont(new Font("bahnschrift", 0, 15));
-        add(text4);
-    }
-
-}
-
-/**
  * DividerPrincipal
  */
 class DividerPrincipal extends JPanel {
     public DividerPrincipal(int width, int height, int boundY, int heightSize, int widthSize) {
         this.setBounds((int) ((width * 0.5 / 2) - 2) - (widthSize / 2), boundY, widthSize, heightSize);
-        this.setBackground(Color.gray);
-        this.setLayout(null);
-    }
-}
-
-/**
- * DividerResult
- */
-class DividerResult extends JPanel {
-    public DividerResult(int width, int height, int boundY, int heightSize, int widthSize) {
-        this.setBounds((int) ((width * 0.5 / 2) + 50) - (widthSize / 2), boundY, widthSize, heightSize);
         this.setBackground(Color.gray);
         this.setLayout(null);
     }
