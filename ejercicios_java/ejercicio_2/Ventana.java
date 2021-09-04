@@ -1,5 +1,9 @@
 package ejercicio_2;
 import javax.swing.*;
+
+import methods.DigitOnlyFormKeyListener;
+import methods.HintTextListener;
+
 import java.awt.event.*;
 import java.awt.*;
 
@@ -22,11 +26,11 @@ public class Ventana extends JFrame {
         JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width,height);
         panePrincipal.add(titleHeader);
         
-        JFormattedTextField formALtura = new JFormattedTextField(new Integer(0));
+        JTextField formALtura = new JTextField();
         JpanelTexFormWidth texFormAltura = new JpanelTexFormWidth(width,height,formALtura);
         panePrincipal.add(texFormAltura);
        
-        JFormattedTextField formBase = new JFormattedTextField (new Integer(0));
+        JTextField formBase = new JTextField ();
         JpanelTextFormLarge texFormBase = new JpanelTextFormLarge(width,height,formBase);
         panePrincipal.add(texFormBase);
       
@@ -84,9 +88,16 @@ class JpanelTexFormWidth extends JPanel {
         textPanel.setBackground(Color.white);
         add(textPanel);
 
+        
+        form.setText("0");
         form.setSize((int)(width*0.135-20 ),20);
         form.setBounds(0,65,(int)(width*0.135-20 ),20);
         form.setHorizontalAlignment(SwingConstants.CENTER);
+
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        form.addKeyListener(keyListenersDigitOnly);
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, "0");
+        form.addFocusListener(focusAdapterForm2);
         // text.setFont(new Font("abadi",2,15) );
         add(form);
     
@@ -114,9 +125,15 @@ class JpanelTextFormLarge extends JPanel {
         textPanel.setBackground(Color.white);
         add(textPanel);
 
+        form.setText("0");
         form.setSize((int)(width*0.135-20 ),20);
         form.setBounds(0,65,(int)(width*0.135-20 ),20);
         form.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        form.addKeyListener(keyListenersDigitOnly);
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, "0");
+        form.addFocusListener(focusAdapterForm2);
         add(form);
     }
 }

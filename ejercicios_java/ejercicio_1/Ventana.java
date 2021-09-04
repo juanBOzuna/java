@@ -1,13 +1,15 @@
 package ejercicio_1;
 
 import javax.swing.JButton;
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import methods.DigitOnlyFormKeyListener;
+import methods.HintTextListener;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -31,11 +33,11 @@ public class Ventana extends JFrame{
         JpanelHeaderTitle titleHeader = new JpanelHeaderTitle(width,height);
         panePrincipal.add(titleHeader);
         
-        JFormattedTextField formALtura = new JFormattedTextField(new Integer(0));
+        JTextField formALtura = new JTextField();
         JpanelTexFormAltura texFormAltura = new JpanelTexFormAltura(width,height,formALtura);
         panePrincipal.add(texFormAltura);
        
-        JFormattedTextField formBase = new JFormattedTextField (new Integer(0));
+        JTextField formBase = new JTextField();
         JpanelTextFormBase texFormBase = new JpanelTextFormBase(width,height,formBase);
         panePrincipal.add(texFormBase);
       
@@ -92,9 +94,14 @@ class JpanelTexFormAltura extends JPanel {
         textPanel.setBackground(Color.white);
         add(textPanel);
 
+        form.setText("0");
         form.setSize((int)(width*0.135-20 ),20);
         form.setBounds(0,65,(int)(width*0.135-20 ),20);
         form.setHorizontalAlignment(SwingConstants.CENTER);
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        form.addKeyListener(keyListenersDigitOnly);
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, "0");
+        form.addFocusListener(focusAdapterForm2);
         // text.setFont(new Font("abadi",2,15) );
         add(form);
     
@@ -119,9 +126,14 @@ class JpanelTextFormBase extends JPanel {
         textPanel.setBackground(Color.white);
         add(textPanel);
 
+        form.setText("0");
         form.setSize((int)(width*0.135-20 ),20);
         form.setBounds(0,65,(int)(width*0.135-20 ),20);
         form.setHorizontalAlignment(SwingConstants.CENTER);
+        DigitOnlyFormKeyListener keyListenersDigitOnly = new DigitOnlyFormKeyListener();
+        form.addKeyListener(keyListenersDigitOnly);
+        HintTextListener focusAdapterForm2 = new HintTextListener(form, "0");
+        form.addFocusListener(focusAdapterForm2);
         add(form);
     }
 }
