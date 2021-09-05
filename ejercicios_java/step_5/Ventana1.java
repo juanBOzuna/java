@@ -33,7 +33,7 @@ public class Ventana1 extends JFrame {
             @Override
             public void actionPerformed(ActionEvent evento) {
 
-                Ventana2 ventana = new Ventana2(596);
+                Ventana2 ventana = new Ventana2(9);
                 ventana.setVisible(true);
 
             }

@@ -36,12 +36,12 @@ public class Ventana2 extends JFrame {
 
             }
             panelP.add(panel(x, y2, widthP, heightP, valorDado));
-            panelP.add(panel2(x + widthP + 5, y2, 200, heightP));
+            panelP.add(panel2(x + widthP + 5, y2, 200, heightP,i+1));
         }
         panelP.setLayout(null);
         panelP.setPreferredSize(new DimensionUIResource(width / 3, y2 + heightP + 5 + 45));
         if (size_total < height) {
-            setSize(width / 3, y2 + heightP + 5 + 60);
+            setSize(width / 3, y2 + heightP + 5 + 95);
             panelScroll.setBounds(10, 10, width / 3, y2 + heightP + 5 + 60);
 
         } else {
@@ -72,13 +72,28 @@ public class Ventana2 extends JFrame {
         return panelbutton;
     }
 
-    JPanel panel2(int x, int y, int widths, int heights) {
+    JPanel panel2(int x, int y, int widths, int heights,int lanzamiento ) {
 
         JPanel panelbutton = new JPanel();
         panelbutton.setBackground(Color.white);
         panelbutton.setBounds(x, y, widths, heights);
+        panelbutton.setLayout(null);
+        
         panelbutton.setLayout(new GridLayout(1, 1));
+
+        JLabel text = new JLabel();
+        text.setText("Lanzamiento #"+lanzamiento);
+        text.setHorizontalAlignment(SwingConstants.LEFT);
+        text.setVerticalAlignment(SwingConstants.CENTER);
+        text.setFont(new Font("bahnschrift", 0, 20));
+
+        JPanel panelTitle = new JPanel();
+
+        panelbutton.add(text);
 
         return panelbutton;
     }
 }
+
+
+
