@@ -73,24 +73,6 @@ public class Result extends JFrame {
         panel.add(divider5);
 
     }
-
-    public static void addDinamics(JPanel panelResult, double hr1, double val1, double hr2, double val2, double hr3,
-            double val3, double hr4, double val4, double hr5, double val5, double hr6, double val6, double hr7,
-            double val7, double val8, double val9, double aporEps, double aporPension, double cuotaPrestamo,
-            String name, double val10, double val11, double val12) {
-        JpanelContentSurchargues contentSurchargues = new JpanelContentSurchargues(width, height, hr1, val1, hr2, val2,
-                hr3, val3, hr4, val4, hr5, val5, hr6, val6, hr7, val7, val8, val9);
-        panelResult.add(contentSurchargues);
-
-        JPanelContentDeductions contentDeductions = new JPanelContentDeductions(width, height, aporEps, aporPension,
-                cuotaPrestamo);
-        panelResult.add(contentDeductions);
-
-        JPanelFooterResult footer = new JPanelFooterResult(width, height, name, val10, val11, val12);
-        panelResult.add(footer);
-
-    }
-
 }
 
 /**
