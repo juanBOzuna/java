@@ -301,7 +301,7 @@ class JPanelImageDductions extends JPanel {
         this.setBounds((int) ((width * 0.5 / 2) + 55), (int) (height * 0.17) + (int) (height * 0.466 / 2),
                 (int) (width * 0.5 / 2) - 70, (int) (height * 0.466 / 2));
 
-        Image img = new ImageIcon("ejercicios_java/ejercicio_4/assets/deduction.png").getImage();
+        Image img = new ImageIcon("ejercicios_java_parcial_1/ejercicio_4/assets/deduction.png").getImage();
         ImageIcon img2 = new ImageIcon(
                 img.getScaledInstance((int) (width * 0.5 / 2) - 70, (int) (height * 0.466 / 2), Image.SCALE_SMOOTH));
 
