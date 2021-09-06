@@ -1,4 +1,4 @@
-package ejercicio_2;
+package ejercicio_GUI_2;
 import javax.swing.*;
 
 import methods.DigitOnlyFormKeyListener;

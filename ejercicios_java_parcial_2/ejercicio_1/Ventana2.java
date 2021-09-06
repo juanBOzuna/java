@@ -32,7 +32,7 @@ public class Ventana2 extends JFrame {
             ruta = "ejercicios_java_parcial_2/ejercicio_1/assets/cara-" + Integer.toString(valorDado)
                     + "-removebg-preview.png";
             panelP.add(panel(x, y2, widthP, heightP, ruta));
-            panelP.add(panel2(x + widthP + 5, y2, 200, heightP, i+1 + ": " + valorDado, "", true));
+            panelP.add(panel2(x + widthP + 5, y2, 200, heightP, i + 1 + ": " + valorDado, "", true));
 
             switch (valorDado) {
                 case 1:
@@ -59,32 +59,32 @@ public class Ventana2 extends JFrame {
         panelP.add(panel((width / 4) + 95, y, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-1-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y, 200, heightP - 10, "" + 1,
-                " = " + d1 + (d1 > 1 ? " veces" : " vez"), false));
+                " " + d1 + (d1 > 1 ? " veces" : " vez"), false));
 
         panelP.add(panel((width / 4) + 95, y + y + heightP - 5, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-2-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y + y + heightP - 5, 200, heightP - 10, "" + 1,
-                " = " + d2 + (d2 > 1 ? " veces" : " vez"), false));
+                " " + d2 + (d2 > 1 ? " veces" : " vez"), false));
 
         panelP.add(panel((width / 4) + 95, y + ((y + heightP - 5)) * 2, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-3-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y + ((y + heightP - 5)) * 2, 200, heightP - 10, "" + 1,
-                " = " + d3 + (d3 > 1 ? " veces" : " vez"), false));
+                " " + d3 + (d3 > 1 ? " veces" : " vez"), false));
 
         panelP.add(panel((width / 4) + 95, y + ((y + heightP - 5)) * 3, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-4-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y + ((y + heightP - 5)) * 3, 200, heightP - 10, "" + 1,
-                " = " + d4 + (d4 > 1 ? " veces" : " vez"), false));
+                " " + d4 + (d4 > 1 ? " veces" : " vez"), false));
 
         panelP.add(panel((width / 4) + 95, y + ((y + heightP - 5)) * 4, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-5-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y + ((y + heightP - 5)) * 4, 200, heightP - 10, "" + 1,
-                " = " + d5 + (d5 > 1 ? " veces" : " vez"), false));
+                " " + d5 + (d5 > 1 ? " veces" : " vez"), false));
 
         panelP.add(panel((width / 4) + 95, y + ((y + heightP - 5)) * 5, widthP - 10, heightP - 10,
                 "ejercicios_java_parcial_2/ejercicio_1/assets/cara-6-removebg-preview.png"));
         panelP.add(panel2(width / 4 + 95 + widthP + 5, y + ((y + heightP - 5)) * 5, 200, heightP - 10, "" + 1,
-                " = " + d6 + (d6 > 1 ? " veces" : " vez"), false));
+                " " + d6 + (d6 > 1 ? " veces" : " vez"), false));
 
         if (y * dato + (heightP * (dato - 1)) < height) {
             if (dato > 7) {
@@ -154,21 +154,6 @@ public class Ventana2 extends JFrame {
 
         return panel;
     }
-
-    JPanel panel3(int x, int y, int widths, int heights, String ruta) {
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.white);
-        panel.setBounds(x, y, widths, heights);
-        panel.setLayout(new GridLayout(1, 1));
-
-        Image img = new ImageIcon(ruta).getImage();
-        ImageIcon img2 = new ImageIcon(img.getScaledInstance(widths, heights, Image.SCALE_SMOOTH));
-        JLabel picLabel = new JLabel(img2);
-
-        panel.add(picLabel);
-
-        return panel;
-    }
 }
 
 /**
@@ -176,7 +161,7 @@ public class Ventana2 extends JFrame {
  */
 class DividerPrincipal extends JPanel {
     public DividerPrincipal(int width, int height, int boundY, int heightSize, int widthSize) {
-        this.setBounds((int) (width / 2) - (widthSize / 2) +80, boundY, widthSize, heightSize);
+        this.setBounds((int) (width / 2) - (widthSize / 2) + 80, boundY, widthSize, heightSize);
         this.setBackground(Color.gray);
         this.setLayout(null);
     }

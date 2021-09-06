@@ -1,4 +1,5 @@
-package ejercicio_4;
+package ejercicio_GUI_4;
+
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 
@@ -19,7 +20,7 @@ public class Result extends JFrame {
 
         JScrollPane panelScroll = new JScrollPane();
         panelScroll.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        panelScroll.setBounds(10, 10,(int) (width * 0.5), (int) (height * 0.9));
+        panelScroll.setBounds(10, 10, (int) (width * 0.5), (int) (height * 0.9));
 
         // panelResult.setSize((int) (width * 0.5), (int) (height * 0.9));
         panelResult.setPreferredSize(new DimensionUIResource((int) (width * 0.48), (int) (height * 0.85)));
@@ -329,6 +330,7 @@ class JPanelFooterResult extends JPanel {
         text4.setVerticalAlignment(SwingConstants.CENTER);
         text4.setFont(new Font("bahnschrift", 0, 15));
         add(text4);
+
     }
 
 }
