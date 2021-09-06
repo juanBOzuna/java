@@ -1,4 +1,4 @@
-package ejercicio_2;
+package ejercicio_GUI_2;
 
 public class AreaRectangulo {
     public static void main(String[] args) {

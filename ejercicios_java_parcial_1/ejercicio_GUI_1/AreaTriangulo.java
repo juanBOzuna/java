@@ -1,4 +1,4 @@
-package ejercicio_1;
+package ejercicio_GUI_1;
 
 public class AreaTriangulo {
     public static void main(String[] args) {

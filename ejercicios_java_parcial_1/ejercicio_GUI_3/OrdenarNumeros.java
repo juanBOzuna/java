@@ -1,4 +1,4 @@
-package ejercicio_3;
+package ejercicio_GUI_3;
 
 public class OrdenarNumeros {
   static Ventana v2 = new Ventana();

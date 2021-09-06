@@ -1,4 +1,4 @@
-package ejercicio_4;
+package ejercicio_GUI_4;
 
 import java.awt.event.*;
 import javax.swing.*;

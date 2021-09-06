@@ -2,7 +2,7 @@ package ejercicio_1;
 
 import java.awt.*;
 
-public class LanzamientoDados {
+public class LanzamientoDado {
 
     static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     static int height = Toolkit.getDefaultToolkit().getScreenSize().height;
