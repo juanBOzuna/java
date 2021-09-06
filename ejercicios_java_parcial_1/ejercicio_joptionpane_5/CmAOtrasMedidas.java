@@ -19,13 +19,18 @@ public class CmAOtrasMedidas {
         pulg = cm / 2.54;
         pie = pulg / 12;
         m = cm * 0.01;
+        km = cm/100000;
         yarda = pulg / 36;
         milla = (m * 0.001) * 0.621371;
 
-        String ms = "" + cm + " centimetros son :" + "\n" + "" + "\n" + mm + " MILIMETROS, " + "\n"
-                + String.format("%.03f", pulg) + " PULGADAS, " + "\n" + String.format("%.03f", pie) + " PIES, " + "\n"
-                + String.format("%.03f", m) + " METROS , " + "\n" + String.format("%.03f", yarda) + " YARDAS, " + "\n"
-                + String.format("%.03f", milla) + " MILLAS.";
+        String ms = "" + String.valueOf(cm).replace(".", ",") + " centimetros son :" + "\n" + "" + "\n"
+                + String.format("%.03f", mm).replace(".", ",") + " MILIMETROS, " + "\n"
+                + String.format("%.03f", pulg).replace(".", ",") + " PULGADAS, " + "\n"
+                + String.format("%.03f", pie).replace(".", ",") + " PIES, " + "\n"
+                + String.format("%.03f", m).replace(".", ",") + " METROS , " + "\n"
+                + String.format("%.03f", km).replace(".", ",") + " KILOMETROS , " + "\n"
+                + String.format("%.03f", yarda).replace(".", ",") + " YARDAS, " + "\n"
+                + String.format("%.03f", milla).replace(".", ",") + " MILLAS.";
 
         JOptionPane.showMessageDialog(null, ms);
 

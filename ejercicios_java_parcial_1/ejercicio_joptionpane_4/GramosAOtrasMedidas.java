@@ -25,11 +25,15 @@ public class GramosAOtrasMedidas {
         t = kg / 1000;
         onza = dag * 0.35274;
 
-        String ms = "" + String.format("%.03f", mg) + " miligramos" + "\n" + String.format("%.03f", hg) + " hectogramos"
-                + "\n" + String.format("%.03f", kg) + " kilogramos" + "\n" + String.format("%.03f", dg) + " decigramos"
-                + "\n" + String.format("%.03f", cg) + " centigramos" + "\n" + String.format("%.03f", lb) + " libras "
-                + "\n" + String.format("%.03f", dag) + " decagramos" + "\n" + String.format("%.03f", t) + " toneladas"
-                + "\n" + String.format("%.03f", onza) + " onzas" + "\n";
+        String ms = "" + String.format("%.03f", mg).replace(".", ",") + " miligramos" + "\n"
+                + String.format("%.03f", hg).replace(".", ",") + " hectogramos" + "\n"
+                + String.format("%.03f", kg).replace(".", ",") + " kilogramos" + "\n"
+                + String.format("%.03f", dg).replace(".", ",") + " decigramos" + "\n"
+                + String.format("%.03f", cg).replace(".", ",") + " centigramos" + "\n"
+                + String.format("%.03f", lb).replace(".", ",") + " libras " + "\n"
+                + String.format("%.03f", dag).replace(".", ",") + " decagramos" + "\n"
+                + String.format("%.03f", t).replace(".", ",") + " toneladas" + "\n"
+                + String.format("%.03f", onza).replace(".", ",") + " onzas" + "\n";
 
         JOptionPane.showMessageDialog(null, ms);
     }
