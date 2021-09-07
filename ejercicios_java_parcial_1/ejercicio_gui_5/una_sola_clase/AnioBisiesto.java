@@ -1,10 +1,10 @@
-package ejercicio_gui_5;
+package ejercicio_gui_5.una_sola_clase;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Anio {
+public class AnioBisiesto {
     public static void main(String[] args) {
         Ventana2 v = new Ventana2();
 
