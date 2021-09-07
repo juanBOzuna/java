@@ -19,7 +19,7 @@ public class TiempoVivido {
                 + edad * 24 + "\nsemana: " + edad * 52.143 + "\nDias: " + edad * 365 + "Jornadas \ndia: " + (edad * 365) / 4
                 + "\nJornadas noche: " + (edad * 365) / 4 + "\nJornadas mañana: " + (edad * 365) / 4 + "\nJornadas tarde: "
                 + (edad * 365) / 4 + "\nHoras: " + edad * 8760 + "\nMinutos: " + edad * 525600 + "\nSegundos: " + edad * 3.154
-                + "\nDomingos: " + edad * 52.143 + "\nMili-segundos: " + edad * 3.154;
+                + "\nDomingos: " + edad * 52.143 + "\nMili-segundos:  " + edad * 3.154;
 
         System.out.println(ms);
 
