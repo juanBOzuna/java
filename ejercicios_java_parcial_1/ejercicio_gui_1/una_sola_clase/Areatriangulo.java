@@ -1,13 +1,17 @@
-package ejercicio_gui_1;
+package ejercicio_gui_1.una_sola_clase;
 
 import javax.swing.*;
-
-import methods.*;
-
 import java.awt.event.*;
 import java.awt.*;
 
-public class Ventana extends JFrame {
+public class Areatriangulo {
+    public static void main(String[] args) {
+        Ventana ventana = new Ventana();
+        ventana.setVisible(true);
+    }
+}
+
+class Ventana extends JFrame {
     public Ventana() {
         setLayout(null);
         int width = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -167,5 +171,45 @@ class JpanelButton extends JPanel {
                 }
             }
         });
+    }
+}
+
+class DigitOnlyFormKeyListener extends KeyAdapter {
+
+    public void keyTyped(KeyEvent evt) {
+        char caracter = evt.getKeyChar();
+
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '.')
+                && (caracter != '\b' /* corresponde a BACK_SPACE */)) {
+            evt.consume();
+        }
+    }
+}
+
+class HintTextListener extends FocusAdapter {
+    JTextField form = new JTextField();
+    String titleGeneral;
+
+    public HintTextListener(JTextField f, String t) {
+        form = f;
+        titleGeneral = t;
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (form.getText().equals(titleGeneral)) {
+            form.setText("");
+        } else {
+            form.setText(form.getText());
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (form.getText().equals(titleGeneral) || form.getText().length() == 0) {
+            form.setText(titleGeneral);
+        } else {
+            form.setText(form.getText());
+        }
     }
 }
