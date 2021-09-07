@@ -19,11 +19,12 @@ public class Ventana2 extends JFrame {
 
         panelP.setLayout(null);
         panelP.setBackground(Color.white);
-        int random1 = 0, random2 = 0, dobles = 0, impar = 0, par = 0, doble1 = 0, lostAttempt = 0;
+        int random1 = 0, random2 = 0, dobles = 0, impar = 0, par = 0, doble1 = 0, lostAttempt = 0, total = 0;
 
         for (int i = 0; i < dato; i++) {
             random1 = (int) (Math.random() * 6 + 1);
             random2 = (int) (Math.random() * 6 + 1);
+            total += random1 + random2;
             switch (random1) {
                 case 1:
                     d1++;
@@ -102,23 +103,28 @@ public class Ventana2 extends JFrame {
             }
 
         }
+
         DividerPrincipal divider = new DividerPrincipal(width / 2, 10, (10 + (int) (height * 0.14)) * dato - 1, 1);
         panelP.add(divider);
 
         if ((30 + (int) (height * 0.14)) * dato - 1 < height) {
+
+
             if (dato > 5) {
                 setSize(width / 2, (10 + (int) (height * 0.14)) * dato - 1);
                 panelScroll.setBounds(10, 10, width / 2, (5 + (int) (height * 0.14)) * dato - 1);
             } else {
                 setSize(width / 2, (int) (height * 0.85));
                 panelScroll.setBounds(10, 10, width / 2, (int) (height * 0.80));
-                // System.out.print("si.");
             }
+
 
         } else {
             setSize(width / 2, (int) (height * 0.9));
             panelScroll.setBounds(10, 10, width / 2, (int) (height * 0.9));
         }
+
+        
 
         panelP.add(panel((width / 4) + 10, 10, 50, 50,
                 "ejercicios_java_parcial_2/ejercicio_3/assets/cara-1-removebg-preview.png"));
@@ -150,17 +156,28 @@ public class Ventana2 extends JFrame {
         // System.out.print(width * 0.088);
 
         JLabel status = new JLabel(doble1 >= 3 ? "Perdio La Partida" : "Gano La Partida ");
-
         ColorUIResource colorTrue = new ColorUIResource(7, 147, 0);
         ColorUIResource colorFalse = new ColorUIResource(211, 11, 6);
         System.out.print(doble1);
         status.setForeground(doble1 >= 3 ? colorFalse : colorTrue);
         status.setBounds((width / 4) + 10, (int) (width * 0.27) + 20, (int) (width * 0.088), 30);
 
+        final String ms;
+        if (doble1 >= 3) {
+            ms = "RESULTADOS: \nnumero de dobles obtenidos: " + dobles + "\nnumeros pares: " + par
+                    + " \nnumeros impares: " + impar + "\nsuma total: " + total + "\nperdio la partida en el intento #"
+                    + lostAttempt;
+        } else {
+            ms = "RESULTADOS: \nnumero de dobles obtenidos: " + dobles + "\nnumeros pares: " + par
+                    + " \nnumeros impares: " + impar + "\nsuma total: "+ total;
+        }
+
         boton.addActionListener(new ActionListener() {
+            String message = ms;
+
             @Override
             public void actionPerformed(ActionEvent evento) {
-                JOptionPane.showMessageDialog(null, "message");
+                JOptionPane.showMessageDialog(null, message);
             }
 
         });
