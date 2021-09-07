@@ -1,8 +1,7 @@
-package ejercicio_gui_4;
+package ejercicio_gui_4.refactor;
 
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
-
 import java.awt.*;
 
 public class Result extends JFrame {

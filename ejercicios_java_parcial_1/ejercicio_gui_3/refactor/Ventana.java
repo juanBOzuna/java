@@ -1,4 +1,4 @@
-package ejercicio_gui_3;
+package ejercicio_gui_3.refactor;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import methods.DigitOnlyFormKeyListener;
 import methods.HintTextListener;
-import methods.NotDigitFormKeyListener;
 
 import java.awt.event.*;
 import java.awt.*;

@@ -1,10 +1,7 @@
-package ejercicio_gui_5;
-
+package ejercicio_gui_5.refactor;
 import javax.swing.*;
-
 import methods.DigitOnlyFormKeyListener;
 import java.awt.*;
-
 import java.awt.event.*;
 
 public class Ventana extends JFrame {
