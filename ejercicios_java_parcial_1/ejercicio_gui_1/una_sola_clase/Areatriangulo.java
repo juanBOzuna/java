@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 
-public class Areatriangulo {
+public class AreaTriangulo{
     public static void main(String[] args) {
         Ventana ventana = new Ventana();
         ventana.setVisible(true);

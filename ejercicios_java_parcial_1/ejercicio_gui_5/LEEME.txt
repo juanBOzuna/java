@@ -1,0 +1,2 @@
+la carpeta refactor contiene mas de una clase separada por archivos, la carpeta una sola clase tiene todo el programa en una sola clase general
+con subclases
