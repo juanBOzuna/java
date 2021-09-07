@@ -1,4 +1,4 @@
-package ejercicio_GUI_3;
+package ejercicio_gui_3;
 
 import java.util.ArrayList;
 import java.util.Collections;

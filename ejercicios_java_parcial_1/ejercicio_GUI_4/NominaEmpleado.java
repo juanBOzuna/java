@@ -1,4 +1,4 @@
-package ejercicio_GUI_4;
+package ejercicio_gui_4;
 import javax.swing.JFrame;
 
 public class NominaEmpleado extends JFrame{

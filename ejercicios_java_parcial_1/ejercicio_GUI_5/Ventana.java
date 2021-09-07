@@ -1,4 +1,4 @@
-package ejercicio_GUI_5;
+package ejercicio_gui_5;
 
 import javax.swing.*;
 
