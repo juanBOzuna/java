@@ -97,6 +97,7 @@ public class Ventana2 extends JFrame {
                         random2, random1 == 1 && random2 == 1);
                 panelP.add(launching);
             } else {
+                System.out.print("\nIndex bound y actual: " + i);
                 Launching launching = new Launching(20, (10 + (int) (height * 0.14)) * i, (int) (width / 4.5) - 20,
                         (int) (height * 0.14), i, random1, random2, random1 == 1 && random2 == 1);
                 panelP.add(launching);
@@ -109,7 +110,6 @@ public class Ventana2 extends JFrame {
 
         if ((30 + (int) (height * 0.14)) * dato - 1 < height) {
 
-
             if (dato > 5) {
                 setSize(width / 2, (10 + (int) (height * 0.14)) * dato - 1);
                 panelScroll.setBounds(10, 10, width / 2, (5 + (int) (height * 0.14)) * dato - 1);
@@ -118,13 +118,10 @@ public class Ventana2 extends JFrame {
                 panelScroll.setBounds(10, 10, width / 2, (int) (height * 0.80));
             }
 
-
         } else {
             setSize(width / 2, (int) (height * 0.9));
             panelScroll.setBounds(10, 10, width / 2, (int) (height * 0.9));
         }
-
-        
 
         panelP.add(panel((width / 4) + 10, 10, 50, 50,
                 "ejercicios_java_parcial_2/ejercicio_3/assets/cara-1-removebg-preview.png"));
@@ -169,7 +166,7 @@ public class Ventana2 extends JFrame {
                     + lostAttempt;
         } else {
             ms = "RESULTADOS: \nnumero de dobles obtenidos: " + dobles + "\nnumeros pares: " + par
-                    + " \nnumeros impares: " + impar + "\nsuma total: "+ total;
+                    + " \nnumeros impares: " + impar + "\nsuma total: " + total;
         }
 
         boton.addActionListener(new ActionListener() {
