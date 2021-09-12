@@ -4,8 +4,6 @@ import javax.swing.*;
 
 import java.awt.event.*;
 import java.awt.*;
-
-import java.awt.Color;
 import javax.swing.plaf.DimensionUIResource;
 
 public class LanzamientoDados {

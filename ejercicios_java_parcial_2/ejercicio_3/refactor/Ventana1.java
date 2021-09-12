@@ -1,9 +1,9 @@
-package ejercicios_java_parcial_2. ejercicio_3;
+package ejercicios_java_parcial_2.ejercicio_3.refactor;
 
 import javax.swing.*;
 
-import ejercicios_java_parcial_1.methods.DigitOnlyFormKeyListener;
-import ejercicios_java_parcial_1.methods.HintTextListener;
+import ejercicios_java_parcial_2.methods.DigitOnlyFormKeyListener;
+import ejercicios_java_parcial_2.methods.HintTextListener;
 
 import java.awt.event.*;
 import java.awt.*;
