@@ -1,4 +1,4 @@
-package ejercicio_3;
+package ejercicios_java_parcial_2. ejercicio_3;
 
 import java.awt.Color;
 import javax.swing.*;

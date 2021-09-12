@@ -1,4 +1,4 @@
-package ejercicio_5;
+package ejercicios_java_parcial_2. ejercicio_5;
 
 import java.lang.reflect.Array;
 import java.security.KeyStore.Entry;
@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class NumbersForPlayer {
-    int one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, totalEvenNumber = 0, totalOddNumbers = 0,
+    private int one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, totalEvenNumber = 0, totalOddNumbers = 0,
             totalNumbers = 0, numberHigher, smallestNumber;
-    double average;
-    Map<Integer, Integer> listNumbers = new HashMap<Integer, Integer>();
+    private double average;
+    private Map<Integer, Integer> listNumbers = new HashMap<Integer, Integer>();
 
     public NumbersForPlayer() {
 
@@ -106,7 +106,7 @@ public class NumbersForPlayer {
     }
 
     public void setAverage() {
-        this.average = this.getTotalNumbers() / 15;
+        this.average = this.getTotalNumbers() / 50;
     }
 
     public void higherNumber() {
@@ -232,5 +232,4 @@ public class NumbersForPlayer {
                 break;
         }
     }
-
 }

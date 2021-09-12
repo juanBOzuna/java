@@ -1,16 +1,16 @@
-package ejercicio_5;
+package ejercicios_java_parcial_2. ejercicio_5;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Player {
-    ArrayList<Launching> launchings = new ArrayList<Launching>();
-    int repeatedLaunching, repeatedEqualDouble;
-    Boolean fail = false;
-    int numbersForFail, indexForFail;
-    NumbersForPlayer totalNumbersForPlayer;
-    int id;
+    private ArrayList<Launching> launchings = new ArrayList<Launching>();
+    private int repeatedLaunching, repeatedEqualDouble;
+    private Boolean fail = false;
+    private int numbersForFail, indexForFail;
+    private NumbersForPlayer totalNumbersForPlayer;
+    private int id;
 
     public Player(int id) {
         this.id = id;
@@ -37,7 +37,7 @@ public class Player {
         return repeatedEqualDouble;
     }
 
-    public Boolean getFail() {
+    public Boolean isLoser() {
         return fail;
     }
 
@@ -52,25 +52,25 @@ public class Player {
     public void setDoublesAndRepeatedLaunchings() {
         int localTotalRepeatedLaunchings = 0;
         Map<String, Integer> simpleList = new HashMap<String, Integer>();
+        ArrayList<Boolean> simpleList2 = new ArrayList<Boolean>();
 
-        // Map<Integer, Integer> simpleListAux1 = new HashMap<Integer, Integer>();
+        String name1Aux = "", name2Aux = "";
         for (Launching launching : this.launchings) {
 
             int doubles = 0;
             for (int i = 0; i < launchings.size(); i++) {
                 Launching launching2 = launchings.get(i);
+                name1Aux = Integer.toString(launching.getFormattedValues().get(1).getValue());
+                name2Aux = Integer.toString(launching.getFormattedValues().get(2).getValue());
 
                 if (launching.equals(launching2.getDice1(), launching2.getDice2())) {
                     doubles++;
                     if (doubles >= 2) {
-                        simpleList.put(Integer.toString(launching.getFormattedValues().get(1).getValue())
-                                + Integer.toString(launching.getFormattedValues().get(2).getValue()), 2);
+                        simpleList.put(name1Aux + name2Aux, 2);
                         i = launchings.size();
                     }
-
                 } else {
-                    simpleList.put(Integer.toString(launching.getFormattedValues().get(1).getValue())
-                            + Integer.toString(launching.getFormattedValues().get(2).getValue()), 1);
+                    simpleList.put(name1Aux + name2Aux, 1);
                 }
             }
 
@@ -101,8 +101,8 @@ public class Player {
     public void setTotalNumbersForPlayer() {
         NumbersForPlayer totalNumbersForPlayer = new NumbersForPlayer();
         for (Launching launching : this.launchings) {
-            totalNumbersForPlayer.fillAllData(launching.dice1.getValue());
-            totalNumbersForPlayer.fillAllData(launching.dice2.getValue());
+            totalNumbersForPlayer.fillAllData(launching.getDice1().getValue());
+            totalNumbersForPlayer.fillAllData(launching.getDice2().getValue());
             totalNumbersForPlayer.setListNumbers();
             totalNumbersForPlayer.setTotalNumbers(launching.getDice1().getValue());
             totalNumbersForPlayer.setTotalNumbers(launching.getDice2().getValue());

@@ -1,4 +1,4 @@
-package methods;
+package ejercicios_java_parcial_2. methods;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;

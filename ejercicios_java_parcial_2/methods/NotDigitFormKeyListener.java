@@ -1,4 +1,4 @@
-package methods;
+package ejercicios_java_parcial_2. methods;
 
 import java.awt.event.*;
 

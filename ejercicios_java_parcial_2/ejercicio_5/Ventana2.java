@@ -1,4 +1,4 @@
-package ejercicio_5;
+package ejercicios_java_parcial_2. ejercicio_5;
 
 import java.awt.Color;
 import javax.swing.*;
@@ -69,16 +69,16 @@ public class Ventana2 extends JFrame {
         JButton boton = new JButton("Mas detalles");
         boton.setBounds((width / 4) + 10, (int) (width * 0.25), (int) (width * 0.088), 30);
 
-        JLabel status = new JLabel(player.fail ? "Perdio La Partida" : "Gano La Partida ");
+        JLabel status = new JLabel(player.isLoser() ? "Perdio La Partida" : "Gano La Partida ");
         ColorUIResource colorTrue = new ColorUIResource(7, 147, 0);
         ColorUIResource colorFalse = new ColorUIResource(211, 11, 6);
-        status.setForeground(player.fail ? colorFalse : colorTrue);
+        status.setForeground(player.isLoser() ? colorFalse : colorTrue);
         status.setBounds((width / 4) + 10, (int) (width * 0.27) + 20, (int) (width * 0.088), 30);
 
         final String ms;
         NumbersForPlayer numbers = player.getTotalNumbersForPlayer();
         // System.out.println("total de numeros: " + numbers.getTotalNumbers());
-        if (!player.fail) {
+        if (!player.isLoser()) {
             ms = "RESULTADOS: \nTotal de dobles obtenidos: " + player.getRepeatedEqualDouble()
                     + "\nTotal de numeros pares: " + numbers.getTotalEvenNumber() + "\nTotal de numeros impares: "
                     + numbers.getTotalOddNumbers() + "\nEl numero que mas salió: " + numbers.getNumberHigher()
@@ -191,7 +191,7 @@ class JpanelLaunching extends JPanel {
         panelImage1.setBounds(0, (int) (h / 2.8), widthDefault, heightDefault);
         panelImage1.setBackground(Color.white);
 
-        Image img = new ImageIcon(!launching.isDoubleOne() ? launching.dice1.getRelativePath()
+        Image img = new ImageIcon(!launching.isDoubleOne() ? launching.getDice1().getRelativePath()
                 : "ejercicios_java_parcial_2/ejercicio_5/assets/1MataTodo.png").getImage();
 
         ImageIcon img2 = new ImageIcon(img.getScaledInstance(widthDefault - 5, heightDefault - 5, Image.SCALE_SMOOTH));
@@ -202,7 +202,7 @@ class JpanelLaunching extends JPanel {
         panelImage2.setBounds(widthDefault + 30, (int) (h / 2.8), widthDefault, heightDefault);
         panelImage2.setBackground(Color.white);
 
-        Image imge2 = new ImageIcon(!launching.isDoubleOne() ? launching.dice2.getRelativePath()
+        Image imge2 = new ImageIcon(!launching.isDoubleOne() ? launching.getDice2().getRelativePath()
                 : "ejercicios_java_parcial_2/ejercicio_5/assets/1MataTodo.png").getImage();
         ImageIcon imge3 = new ImageIcon(
                 imge2.getScaledInstance(widthDefault - 5, heightDefault - 5, Image.SCALE_SMOOTH));

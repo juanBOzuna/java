@@ -1,4 +1,4 @@
-package methods;
+package ejercicios_java_parcial_1.methods;
 
 import java.awt.event.*;
 import java.awt.event.FocusAdapter;

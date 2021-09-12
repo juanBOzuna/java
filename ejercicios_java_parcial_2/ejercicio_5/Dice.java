@@ -1,8 +1,8 @@
-package ejercicio_5;
+package ejercicios_java_parcial_2. ejercicio_5;
 
 public class Dice {
-    int value;
-    String relativePath;
+    private int value;
+    private String relativePath;
 
     public Dice() {
         RollDice();

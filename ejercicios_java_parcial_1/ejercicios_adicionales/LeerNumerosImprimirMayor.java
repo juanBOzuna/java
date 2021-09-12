@@ -1,4 +1,4 @@
-package ejercicios_adicionales;
+package ejercicios_java_parcial_1. ejercicios_adicionales;
 
 import java.util.ArrayList;
 import java.util.Collections;

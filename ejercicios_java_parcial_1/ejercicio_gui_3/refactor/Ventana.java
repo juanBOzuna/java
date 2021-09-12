@@ -1,12 +1,12 @@
-package ejercicio_gui_3.refactor;
+package ejercicios_java_parcial_1. ejercicio_gui_3.refactor;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import javax.swing.*;
 
-import methods.DigitOnlyFormKeyListener;
-import methods.HintTextListener;
+import ejercicios_java_parcial_1.methods.DigitOnlyFormKeyListener;
+import ejercicios_java_parcial_1.methods.HintTextListener;
 
 import java.awt.event.*;
 import java.awt.*;

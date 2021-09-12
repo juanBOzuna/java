@@ -1,8 +1,8 @@
-package ejercicio_4;
+package ejercicios_java_parcial_2. ejercicio_4;
 
 import javax.swing.*;
 
-import methods.*;
+import ejercicios_java_parcial_1.methods.*;
 import java.awt.event.*;
 import java.util.function.Function;
 import java.awt.*;

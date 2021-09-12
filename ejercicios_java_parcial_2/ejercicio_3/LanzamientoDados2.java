@@ -1,4 +1,4 @@
-package ejercicio_3;
+package ejercicios_java_parcial_2. ejercicio_3;
 
 public class LanzamientoDados2 {
     public static void main(String[] args) {

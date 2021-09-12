@@ -1,4 +1,4 @@
-package ejercicio_por_consola_8;
+package ejercicios_java_parcial_1. ejercicio_por_consola_8;
 
 import java.util.Scanner;
 

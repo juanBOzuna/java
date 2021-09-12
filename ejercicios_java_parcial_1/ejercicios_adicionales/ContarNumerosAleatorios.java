@@ -1,4 +1,4 @@
-package ejercicios_adicionales;
+package ejercicios_java_parcial_1. ejercicios_adicionales;
 
 public class ContarNumerosAleatorios {
     public static void main(String[] args) {

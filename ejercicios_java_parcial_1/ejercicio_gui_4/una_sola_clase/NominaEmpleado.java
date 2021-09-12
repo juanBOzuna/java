@@ -1,4 +1,4 @@
-package ejercicio_gui_4.una_sola_clase;
+package ejercicios_java_parcial_1. ejercicio_gui_4.una_sola_clase;
 
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;

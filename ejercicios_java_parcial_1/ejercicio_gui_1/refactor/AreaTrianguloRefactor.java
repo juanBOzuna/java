@@ -1,4 +1,4 @@
-package ejercicio_gui_1.refactor;
+package ejercicios_java_parcial_1.ejercicio_gui_1.refactor;
 
 public class AreaTrianguloRefactor {
     public static void main(String[] args) {

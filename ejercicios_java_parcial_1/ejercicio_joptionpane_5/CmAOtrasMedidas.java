@@ -1,4 +1,4 @@
-package ejercicio_joptionpane_5;
+package ejercicios_java_parcial_1. ejercicio_joptionpane_5;
 
 import javax.swing.JOptionPane;
 

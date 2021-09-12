@@ -1,4 +1,4 @@
-package ejercicio_gui_5.una_sola_clase;
+package ejercicios_java_parcial_1. ejercicio_gui_5.una_sola_clase;
 
 import javax.swing.*;
 import java.awt.*;

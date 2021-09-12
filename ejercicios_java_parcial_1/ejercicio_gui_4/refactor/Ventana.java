@@ -1,11 +1,11 @@
-package ejercicio_gui_4.refactor;
+package ejercicios_java_parcial_1. ejercicio_gui_4.refactor;
 
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
-import methods.DigitOnlyFormKeyListener;
-import methods.HintTextListener;
-import methods.NotDigitFormKeyListener;
+import ejercicios_java_parcial_1.methods.DigitOnlyFormKeyListener;
+import ejercicios_java_parcial_1.methods.HintTextListener;
+import ejercicios_java_parcial_1.methods.NotDigitFormKeyListener;
 
 import java.awt.*;
 

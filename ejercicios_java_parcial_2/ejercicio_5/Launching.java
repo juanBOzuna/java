@@ -1,12 +1,12 @@
-package ejercicio_5;
+package ejercicios_java_parcial_2. ejercicio_5;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Launching {
-    Dice dice1;
-    Dice dice2;
-    int id;
+    private Dice dice1;
+    private Dice dice2;
+    private int id;
 
     public Launching(int id) {
         Dice dice1 = new Dice();

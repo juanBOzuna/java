@@ -1,4 +1,4 @@
-package ejercicio_2;
+package ejercicios_java_parcial_2. ejercicio_2;
 
 import java.awt.Color;
 // import ejercicio_1.Ventana2 ;

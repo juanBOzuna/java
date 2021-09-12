@@ -1,4 +1,4 @@
-package ejercicio_gui_4.refactor;
+package ejercicios_java_parcial_1. ejercicio_gui_4.refactor;
 
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
