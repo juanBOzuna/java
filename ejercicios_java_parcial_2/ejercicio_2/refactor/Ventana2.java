@@ -1,11 +1,8 @@
-package ejercicios_java_parcial_2. ejercicio_2;
+package ejercicios_java_parcial_2.ejercicio_2.refactor;
 
 import java.awt.Color;
-// import ejercicio_1.Ventana2 ;
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
-
-import java.awt.event.*;
 import java.awt.*;
 
 public class Ventana2 extends JFrame {

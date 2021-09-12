@@ -1,8 +1,8 @@
-package ejercicios_java_parcial_2.ejercicio_1;
+package ejercicios_java_parcial_2.ejercicio_1.refactor;
 
 import java.awt.*;
 
-public class LanzamientoDado {
+public class LanzamientoDadoRefactor {
 
     static int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     static int height = Toolkit.getDefaultToolkit().getScreenSize().height;

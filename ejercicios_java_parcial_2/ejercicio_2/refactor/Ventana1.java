@@ -1,10 +1,9 @@
-
-package ejercicios_java_parcial_2. ejercicio_1;
+package ejercicios_java_parcial_2.ejercicio_2.refactor;
 
 import javax.swing.*;
 
-import ejercicios_java_parcial_1.methods.DigitOnlyFormKeyListener;
-import ejercicios_java_parcial_1.methods.HintTextListener;
+import ejercicios_java_parcial_2.methods.DigitOnlyFormKeyListener;
+import ejercicios_java_parcial_2.methods.HintTextListener;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -49,10 +48,10 @@ class JpanelHeaderTitle extends JPanel {
         // this.setSize(width, height);
 
         JLabel text = new JLabel();
-        text.setText("Lanzamiento de un dado");
+        text.setText("Lanzamiento de dos dados");
         text.setHorizontalAlignment(SwingConstants.CENTER);
         text.setVerticalAlignment(SwingConstants.BOTTOM);
-        text.setFont(new Font("britannic bold", 0, 31));
+        text.setFont(new Font("britannic bold", 0, 25));
         add(text);
     }
 }
@@ -68,7 +67,7 @@ class JpanelTextForm extends JPanel {
         this.setLayout(null);
 
         JLabel text = new JLabel();
-        text.setText("Cuantas veces desea lanzar");
+        text.setText("Cuantas veces desea lanzarlos");
         text.setHorizontalAlignment(SwingConstants.CENTER);
 
         text.setFont(new Font("abadi", 2, 15));
