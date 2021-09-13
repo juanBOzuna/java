@@ -1,6 +1,5 @@
 package ejercicios_java_parcial_2.ejercicio_gui_6.una_sola_clase;
 
-
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.event.*;
@@ -10,8 +9,6 @@ import javax.swing.plaf.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-
 
 public class Lanzar50VecesDado2 {
     static Ventana v = new Ventana();
@@ -24,7 +21,6 @@ public class Lanzar50VecesDado2 {
 
 class Ventana extends JFrame {
     int idJugador = 0;
-    int totalPlayers = 0;
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
     Boolean digitOnly = true;
@@ -32,16 +28,33 @@ class Ventana extends JFrame {
     JButton boton2 = new JButton();
     JButton boton1 = new JButton();
     JLabel title = new JLabel();
+    TermsForGame terms = new TermsForGame();
 
     public Ventana() {
 
         while (digitOnly) {
             try {
 
-                totalPlayers = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite cuantos jugadores lanzaran"));
+                terms.setLaunchings(Integer.parseInt(
+                        JOptionPane.showInputDialog(null, "Digite cuantos lanzamientos se haran por jugadores")));
                 digitOnly = false;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Solo debe ingresar numeros");
+            }
+        }
+
+        digitOnly = true;
+        while (digitOnly) {
+            try {
+                terms.setDoubleForFail(Integer.parseInt(JOptionPane.showInputDialog(null,
+                        "Digite el doble que hara que un jugador pierda \n(si es doble uno escribri 1, si es doble dos escribir 2 etc)")));
+                if (Integer.toString(terms.getLaunchings()).replace("0", "").length() > 1) {
+                    Thread.sleep(100);
+                } else {
+                    digitOnly = false;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Solo debe ingresar un numero");
             }
         }
 
@@ -80,28 +93,26 @@ class Ventana extends JFrame {
                 idJugador++;
 
                 Player player = new Player(idJugador);
-                for (int i = 0; i < 50; i++) {
+                for (int i = 0; i < terms.getLaunchings(); i++) {
                     Launching launching = new Launching(i);
+                    launching.setIsDoubleForFail(terms);
                     player.setLaunching(launching);
                 }
-                player.calculateAlldata();
+                player.calculateAlldata(terms);
                 saveResult(player);
 
-                Ventana2 ventana2 = new Ventana2(player);
+                Ventana2 ventana2 = new Ventana2(player, terms);
                 ventana2.setVisible(true);
                 ventana2.addWindowListener(new WindowAdapter() {
                     public void windowClosing(WindowEvent evt) {
-
-                        if (player.getId() >= getTotalPlayers()) {
-                            boton1.setEnabled(false);
+                        setIdJugador(player.getId());
+                        setTitleButton1("Jugador #" + (player.getId() + 1));
+                        boton1.setEnabled(false);
+                        boton1.setEnabled(true);
+                        if (player.getId() > 1) {
                             setStatusFinish(true);
-                        } else {
-                            setIdJugador(player.getId());
-
-                            setTitleButton1("Jugador #" + (player.getId() + 1));
-                            boton1.setEnabled(false);
-                            boton1.setEnabled(true);
                         }
+
                     }
                 });
             }
@@ -131,16 +142,30 @@ class Ventana extends JFrame {
 
     void callBack() {
         result.calculateAllData();
-        System.out.println("\nParticipante con mas Dobles: Jugador #" + result.getPlayerWithMostEqualDouble());
-        System.out.println(
-                "Participante con mas parejas repetidas: Jugador #" + result.getPlayerWithMostRepeatedLaunchings());
-        System.out.println("Cantidad de jugadores que perdieron: " + result.getLosersAmount());
-        System.out.println( result.getWinner()==0 ?"Nadie gano porque todos sacaron doble 1":  "Ganador:  Jugador #" + result.getWinner());
-        System.out.println("Perdedor:  Jugador #" + result.getLoser());
-    }
 
-    int getTotalPlayers() {
-        return totalPlayers;
+        String winner = result.getWinner() == 0 ? "\nNadie gano porque todos sacaron doble 1"
+                : "\nGanador:  Jugador #" + result.getWinner();
+        JOptionPane.showMessageDialog(null,
+                "\nParticipante con mas Dobles: Jugador #" + result.getPlayerWithMostEqualDouble()
+                        + "\nParticipante con mas parejas repetidas: Jugador #"
+                        + result.getPlayerWithMostRepeatedLaunchings() + "\nCantidad de jugadores que perdieron: "
+                        + result.getLosersAmount() + winner + "\nPerdedor:  Jugador #" + result.getLoser()
+
+        );
+        // System.out.println("\nParticipante con mas Dobles: Jugador #" +
+        // result.getPlayerWithMostEqualDouble());
+        // System.out.println(
+        // "Participante con mas parejas repetidas: Jugador #" +
+        // result.getPlayerWithMostRepeatedLaunchings());
+        // System.out.println("Cantidad de jugadores que perdieron: " +
+        // result.getLosersAmount());
+        // System.out.println(result.getWinner() == 0 ? "Nadie gano porque todos sacaron
+        // doble 1"
+        // : "Ganador: Jugador #" + result.getWinner());
+        // System.out.println("Perdedor: Jugador #" + result.getLoser());
+        this.result.dispose();
+        this.setTitleButton1("Jugador #1");
+        this.setStatusFinish(false);
     }
 
     void setIdJugador(int idJugador) {
@@ -165,15 +190,11 @@ class JpanelHeaderTitle extends JPanel {
     }
 }
 
-
-
-// inicio ventana 2
-
 class Ventana2 extends JFrame {
     int width = Toolkit.getDefaultToolkit().getScreenSize().width;
     int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-    public Ventana2(Player player) {
+    public Ventana2(Player player, TermsForGame terms) {
         setSize((int) (width / 2), 500);
         setTitle("Jugador #" + player.getId());
 
@@ -188,11 +209,11 @@ class Ventana2 extends JFrame {
             index++;
             if (Launching.getId() == 0) {
                 JpanelLaunching launching = new JpanelLaunching(20, 10, (int) (width / 4.5) - 20, (int) (height * 0.14),
-                        Launching);
+                        Launching, terms);
                 panelP.add(launching);
             } else {
                 JpanelLaunching launching = new JpanelLaunching(20, (10 + (int) (height * 0.14)) * Launching.getId(),
-                        (int) (width / 4.5) - 20, (int) (height * 0.14), Launching);
+                        (int) (width / 4.5) - 20, (int) (height * 0.14), Launching, terms);
                 panelP.add(launching);
             }
         }
@@ -222,7 +243,7 @@ class Ventana2 extends JFrame {
                 boundYDefault += 50;
             int value = player.getTotalNumbersForPlayer().getListNumbers().get(i + 1);
             panelP.add(panel((width / 4) + 10, boundYDefault, 50, 50,
-                    "ejercicios_java_parcial_2/ejercicio_3/assets/cara-" + (i + 1) + "-removebg-preview.png"));
+                    "ejercicios_java_parcial_2/ejercicio_gui_6/assets/cara-" + (i + 1) + "-removebg-preview.png"));
 
             panelP.add(panel2((width / 4) + 10 + 50, boundYDefault, 200, 50, "",
                     " " + value + (value > 1 ? " veces" : " vez"), false));
@@ -319,7 +340,7 @@ class Ventana2 extends JFrame {
  */
 class JpanelLaunching extends JPanel {
 
-    public JpanelLaunching(int x, int y, int w, int h, Launching launching) {
+    public JpanelLaunching(int x, int y, int w, int h, Launching launching, TermsForGame terms) {
         setBounds(x, y, w, h);
         setLayout(null);
         setBackground(Color.white);
@@ -336,7 +357,7 @@ class JpanelLaunching extends JPanel {
 
         ColorUIResource colorFalse = new ColorUIResource(211, 11, 6);
 
-        if (launching.isDoubleOne()) {
+        if (launching.getIsDoubleForFail()) {
 
             text.setForeground(colorFalse);
         }
@@ -353,8 +374,9 @@ class JpanelLaunching extends JPanel {
         panelImage1.setBounds(0, (int) (h / 2.8), widthDefault, heightDefault);
         panelImage1.setBackground(Color.white);
 
-        Image img = new ImageIcon(!launching.isDoubleOne() ? launching.getDice1().getRelativePath()
-                : "ejercicios_java_parcial_2/ejercicio_5/assets/1MataTodo.png").getImage();
+        Image img = new ImageIcon(!launching.getIsDoubleForFail() ? launching.getDice1().getRelativePath()
+                : "ejercicios_java_parcial_2/ejercicio_gui_6/assets/" + terms.getDoubleForFail() + "MataTodo.png")
+                        .getImage();
 
         ImageIcon img2 = new ImageIcon(img.getScaledInstance(widthDefault - 5, heightDefault - 5, Image.SCALE_SMOOTH));
         JLabel picLabel = new JLabel(img2);
@@ -364,8 +386,9 @@ class JpanelLaunching extends JPanel {
         panelImage2.setBounds(widthDefault + 30, (int) (h / 2.8), widthDefault, heightDefault);
         panelImage2.setBackground(Color.white);
 
-        Image imge2 = new ImageIcon(!launching.isDoubleOne() ? launching.getDice2().getRelativePath()
-                : "ejercicios_java_parcial_2/ejercicio_5/assets/1MataTodo.png").getImage();
+        Image imge2 = new ImageIcon(!launching.getIsDoubleForFail() ? launching.getDice1().getRelativePath()
+                : "ejercicios_java_parcial_2/ejercicio_gui_6/assets/" + terms.getDoubleForFail() + "MataTodo.png")
+                        .getImage();
         ImageIcon imge3 = new ImageIcon(
                 imge2.getScaledInstance(widthDefault - 5, heightDefault - 5, Image.SCALE_SMOOTH));
         JLabel picLabel2 = new JLabel(imge3);
@@ -389,10 +412,6 @@ class DividerPrincipal extends JPanel {
     }
 }
 
-
-
-//inicio clase dado
-
 class Dice {
     private int value;
     private String relativePath;
@@ -403,7 +422,7 @@ class Dice {
 
     void RollDice() {
         this.value = (int) (Math.random() * 6 + 1);
-        this.relativePath = "ejercicios_java_parcial_2/ejercicio_5/assets/cara-" + value + "-removebg-preview.png";
+        this.relativePath = "ejercicios_java_parcial_2/ejercicio_gui_6/assets/cara-" + value + "-removebg-preview.png";
     }
 
     public void setRelativePath(String relativePath) {
@@ -420,12 +439,11 @@ class Dice {
 
 }
 
-
-//inicio clase lanzamiento
 class Launching {
     private Dice dice1;
     private Dice dice2;
     private int id;
+    private boolean isDoubleForFail;
 
     public Launching(int id) {
         Dice dice1 = new Dice();
@@ -449,8 +467,18 @@ class Launching {
         return dice2;
     }
 
-    public Boolean isDoubleOne() {
-        return (dice1.getValue() == 1 && dice2.getValue() == 1);
+    // public Boolean isDoubleForFail(TermsForGame terms) {
+    // return (dice1.getValue() == terms.getDoubleForFail() && dice2.getValue() ==
+    // terms.getDoubleForFail());
+    // }
+
+    public void setIsDoubleForFail(TermsForGame terms) {
+        this.isDoubleForFail = (dice1.getValue() == terms.getDoubleForFail()
+                && dice2.getValue() == terms.getDoubleForFail());
+    }
+
+    public Boolean getIsDoubleForFail() {
+        return this.isDoubleForFail;
     }
 
     Map<Integer, Dice> getFormattedValues() {
@@ -481,8 +509,6 @@ class Launching {
 
 }
 
-
-//inicio clase player
 class Player {
     private ArrayList<Launching> launchings = new ArrayList<Launching>();
     private int repeatedLaunching, repeatedEqualDouble;
@@ -528,7 +554,7 @@ class Player {
         return totalNumbersForPlayer;
     }
 
-    public void setDoublesAndRepeatedLaunchings() {
+    public void setDoublesAndRepeatedLaunchings(TermsForGame terms) {
         int localTotalRepeatedLaunchings = 0;
         Map<String, Integer> simpleList = new HashMap<String, Integer>();
         ArrayList<Boolean> simpleList2 = new ArrayList<Boolean>();
@@ -557,7 +583,7 @@ class Player {
                 this.repeatedEqualDouble++;
             }
 
-            if (launching.isDoubleOne()) {
+            if (launching.getIsDoubleForFail()) {
                 this.numbersForFail += 1;
             }
             if (this.numbersForFail >= 3 && !this.fail) {
@@ -577,7 +603,7 @@ class Player {
 
     }
 
-    public void setTotalNumbersForPlayer() {
+    public void setTotalNumbersForPlayer(TermsForGame terms) {
         NumbersForPlayer totalNumbersForPlayer = new NumbersForPlayer();
         for (Launching launching : this.launchings) {
             totalNumbersForPlayer.fillAllData(launching.getDice1().getValue());
@@ -585,7 +611,7 @@ class Player {
             totalNumbersForPlayer.setListNumbers();
             totalNumbersForPlayer.setTotalNumbers(launching.getDice1().getValue());
             totalNumbersForPlayer.setTotalNumbers(launching.getDice2().getValue());
-            totalNumbersForPlayer.setAverage();
+            totalNumbersForPlayer.setAverage(terms);
 
             totalNumbersForPlayer.higherNumber();
         }
@@ -594,16 +620,12 @@ class Player {
         this.totalNumbersForPlayer = totalNumbersForPlayer;
     }
 
-    public void calculateAlldata() {
-        setDoublesAndRepeatedLaunchings();
-        setTotalNumbersForPlayer();
+    public void calculateAlldata(TermsForGame terms) {
+        setDoublesAndRepeatedLaunchings(terms);
+        setTotalNumbersForPlayer(terms);
     }
 
 }
-
-
-
-//inicio clase numeros del jugador
 
 class NumbersForPlayer {
     private int one = 0, two = 0, three = 0, four = 0, five = 0, six = 0, totalEvenNumber = 0, totalOddNumbers = 0,
@@ -703,8 +725,8 @@ class NumbersForPlayer {
         return six;
     }
 
-    public void setAverage() {
-        this.average = this.getTotalNumbers() / 50;
+    public void setAverage(TermsForGame terms) {
+        this.average = this.getTotalNumbers() / terms.getLaunchings();
     }
 
     public void higherNumber() {
@@ -832,10 +854,6 @@ class NumbersForPlayer {
     }
 }
 
-
-
-//inicio clase resultado
-
 class Result {
     private ArrayList<Player> players = new ArrayList<Player>();
     private int playerWithMostEqualDouble;
@@ -901,7 +919,8 @@ class Result {
         for (Player player : players) {
             // System.out.println("\n\nPlayer #" + player.getId());
             // System.out.println("dobles de jugador: " + player.getRepeatedEqualDouble());
-            // System.out.println("parejas repetida de jugador: " + player.getRepeatedLaunching());
+            // System.out.println("parejas repetida de jugador: " +
+            // player.getRepeatedLaunching());
             if (player.getId() == 1) {
                 defaultMaximun = player.getRepeatedEqualDouble();
                 idPlayerAux = player.getId();
@@ -961,9 +980,10 @@ class Result {
 
             for (Player player : playerAux) {
 
-            //     System.out.println("\nplayer # " + player.getId());
-                
-            // System.out.println("Total numbers: "+player.getTotalNumbersForPlayer().getTotalNumbers() );
+                // System.out.println("\nplayer # " + player.getId());
+
+                // System.out.println("Total numbers:
+                // "+player.getTotalNumbersForPlayer().getTotalNumbers() );
                 if (player.getId() == 1) {
                     defaultMaximun = player.getTotalNumbersForPlayer().getTotalNumbers();
                     idPlayerAux = player.getId();
@@ -987,7 +1007,8 @@ class Result {
         for (Player player : players) {
 
             // System.out.println("\nplayer # " + player.getId());
-            // System.out.println("Total numbers: "+player.getTotalNumbersForPlayer().getTotalNumbers() );
+            // System.out.println("Total numbers:
+            // "+player.getTotalNumbersForPlayer().getTotalNumbers() );
             if (player.getId() == 1) {
                 // System.out.print("Es el primero");
                 defaultMinimun = player.getTotalNumbersForPlayer().getTotalNumbers();
@@ -1011,6 +1032,38 @@ class Result {
         this.calculateWinner();
         this.calculateLoser();
     }
+
+    public void dispose() {
+        this.getPlayers().clear();
+        this.setPlayerWithMostEqualDouble(0);
+        this.setPlayerWithMostRepeatedLaunchings(0);
+        this.setLoser(0);
+        this.setLosersAmount(0);
+        this.setWinner(winner);
+    }
 }
 
+class TermsForGame {
+    private int launchings;
+    private int doubleForFail;
 
+    public TermsForGame() {
+    }
+
+    public void setLaunchings(int launchings) {
+        this.launchings = launchings;
+    }
+
+    public int getLaunchings() {
+        return launchings;
+    }
+
+    public void setDoubleForFail(int doubleForFail) {
+        this.doubleForFail = doubleForFail;
+    }
+
+    public int getDoubleForFail() {
+        return doubleForFail;
+    }
+
+}
