@@ -22,14 +22,6 @@ class Ventana extends JFrame {
 
         JLabel text = new JLabel("textp");
         JPanel panelP = new JPanel();
-        // panelP.setSize(getWidth(), getHeight());
-        // panelP.setBackground(Color.white);
-        // panelP.setLayout(null);
-        // text.setFont(new Font("britannic bold", 0, 35));
-        // text.setBounds((int) (getWidth() * 0.05), (int) (getHeight() * 0.05), (int)
-        // (35 * (text.getText().length())),
-        // 100);
-        // panelP.add(text);
         add(panelP);
 
         addComponentListener(new ComponentAdapter() {
@@ -38,6 +30,10 @@ class Ventana extends JFrame {
                 System.out.println("width: " + getWidth() + " height: " + getHeight());
                 int width = getWidth();
                 int height = getHeight();
+
+                JPanel panelHeader = new JPanel();
+                panelHeader.setBackground(Color.BLUE);
+                panelHeader.setBounds(0, 0, getWidth(), (int) (getHeight() / 6));
 
                 text.setBounds((int) (width * 0.05), (int) (height * 0.05), (35 * (text.getText().length())), 100);
 
@@ -50,7 +46,15 @@ class Ventana extends JFrame {
                 text.setBounds((int) (width * 0.05), (int) (height * 0.05),
                         (int) (sizeFont * (text.getText().length())), 100);
                 panelP.add(text);
+                panelP.add(panelHeader);
             }
         });
     }
+
+    JPanel header() {
+        JPanel header = new JPanel();
+
+        return header;
+    }
+
 }
