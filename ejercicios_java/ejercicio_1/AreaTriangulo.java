@@ -1,8 +1,8 @@
-package ejercicio_1;
+package ejercicios_java.ejercicio_1;
 import java.awt.event.*;
 import javax.swing.*;
 
-import utils.*;
+import ejercicios_java.utils.*;
 
 public class AreaTriangulo {
 	public static void main(String arg[]) {

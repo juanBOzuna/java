@@ -1,10 +1,10 @@
-package ejercicio_2;
+package ejercicios_java.ejercicio_2;
 import java.awt.*;
 
 import javax.swing.*;
 
-import utils.MethodForExapmle;
-import utils.Ventanas;
+import ejercicios_java.utils.MethodForExapmle;
+import ejercicios_java.utils.Ventanas;
 
 import java.awt.event.*;
 

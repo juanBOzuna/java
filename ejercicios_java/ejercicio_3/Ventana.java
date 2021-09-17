@@ -1,4 +1,4 @@
-package ejercicio_3;
+package ejercicios_java.ejercicio_3;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;

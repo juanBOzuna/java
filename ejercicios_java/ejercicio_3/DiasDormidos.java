@@ -1,4 +1,4 @@
-package ejercicio_3;
+package ejercicios_java.ejercicio_3;
 
 public class DiasDormidos {
     public static void main(String arg[]) {

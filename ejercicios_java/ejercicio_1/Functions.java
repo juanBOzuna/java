@@ -1,7 +1,7 @@
-package ejercicio_1;
+package ejercicios_java.ejercicio_1;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import utils.*;
+import ejercicios_java.utils.*;
 
 public class Functions{
     

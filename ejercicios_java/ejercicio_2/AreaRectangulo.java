@@ -1,7 +1,7 @@
-package ejercicio_2;
+package ejercicios_java.ejercicio_2;
 import javax.swing.*;
 
-import utils.*;
+import ejercicios_java.utils.*;
 
 import java.awt.event.*;
 

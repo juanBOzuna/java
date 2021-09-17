@@ -1,5 +1,5 @@
 
-package step_5;
+package ejercicios_java.step_5;
 
 import java.awt.*;
 import javax.swing.*;

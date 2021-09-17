@@ -1,4 +1,4 @@
-package utils;
+package ejercicios_java.utils;
 
 import javax.swing.JFrame;
 

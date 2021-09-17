@@ -1,4 +1,4 @@
-package step_5;
+package ejercicios_java.step_5;
 
 import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;

@@ -1,4 +1,4 @@
-package ejercicio_1;
+package ejercicios_java.ejercicio_1;
 import javax.swing.JFrame;
 import java.awt.*;
 

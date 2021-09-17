@@ -1,4 +1,4 @@
-package step_4;
+package ejercicios_java.step_4;
 
 import javax.swing.JOptionPane;
 

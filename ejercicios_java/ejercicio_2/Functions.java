@@ -1,10 +1,10 @@
-package ejercicio_2;
+package ejercicios_java.ejercicio_2;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-import utils.*;
+import ejercicios_java.utils.*;
 
 public class Functions{
     
