@@ -1,4 +1,4 @@
-package ejercicios_java_parcial_1. ejercicio_gui_4.refactor;
+package ejercicios_java_parcial_1.ejercicio_GUI_4.refactor;
 import javax.swing.JFrame;
 
 public class NominaEmpleadoRefactor extends JFrame{
