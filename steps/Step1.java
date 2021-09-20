@@ -3,6 +3,7 @@ package steps;
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.plaf.ColorUIResource;
 
 public class Step1 {
 
@@ -19,7 +20,7 @@ class Ventana extends JFrame {
     public Ventana(int width, int height) {
         setSize(width, height);
         setLayout(null);
-
+        ColorUIResource colorTrue = new ColorUIResource(221, 75, 57);
         JLabel text = new JLabel("textp");
         JPanel panelP = new JPanel();
         add(panelP);
@@ -32,24 +33,28 @@ class Ventana extends JFrame {
                 int height = getHeight();
 
                 JPanel panelHeader = new JPanel();
-                panelHeader.setBackground(Color.BLUE);
-                panelHeader.setBounds(0, 0, getWidth(), (int) (getHeight() / 6));
+                panelHeader.setBackground(colorTrue);
+                panelHeader.setBounds(0, 0, width, (int) (height*0.07 ));
 
-                text.setBounds((int) (width * 0.05), (int) (height * 0.05), (35 * (text.getText().length())), 100);
+                // text.setBounds((int) (width * 0.05), (int) (height * 0.05), (35 * (text.getText().length())), 100);
+
+                JPanel panelImage1 = new JPanel();
+                 panelImage1.setBounds(0, (int) (height / 2.8), (int)(width*0.05) ,(int)(height*0.05) );
+                 panelImage1.setBackground(Color.white);
+
+                 Image img = new ImageIcon(!launching.getIsDoubleForFail() ? launching.getDice1().getRelativePath()
+                : "ejercicios_java_parcial_2/ejercicio_gui_6/assets/" + terms.getDoubleForFail() + "MataTodo.png")
+                        .getImage();
 
                 panelP.setSize(getWidth(), getHeight());
                 panelP.setBackground(Color.white);
                 panelP.setLayout(null);
-
-                int sizeFont = (int) (width * 0.03);
-                text.setFont(new Font("britannic bold", 0, sizeFont));
-                text.setBounds((int) (width * 0.05), (int) (height * 0.05),
-                        (int) (sizeFont * (text.getText().length())), 100);
-                panelP.add(text);
                 panelP.add(panelHeader);
             }
         });
     }
+
+    
 
     JPanel header() {
         JPanel header = new JPanel();
